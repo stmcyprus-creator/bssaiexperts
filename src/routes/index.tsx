@@ -221,11 +221,18 @@ function Landing() {
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{p.done}</p>
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <span className="text-xs text-muted-foreground">Стоимость работ</span>
-                  <span className="font-bold text-primary">{p.price}</span>
+                  {p.price === "—"
+                    ? <span className="font-medium text-muted-foreground">по согласованию</span>
+                    : <span className="font-bold text-primary">{p.price}</span>}
                 </div>
               </div>
             </article>
           ))}
+        </div>
+        <div className="flex justify-center mt-10">
+          <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            Показать все работы
+          </Button>
         </div>
       </section>
 
