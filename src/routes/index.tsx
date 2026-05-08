@@ -365,7 +365,7 @@ function Landing() {
 
 function Header() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
+    <header className="fixed top-0 inset-x-0 z-50 bg-white" style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <a href="#home" className="flex items-center">
           <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
