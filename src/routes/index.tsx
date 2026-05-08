@@ -356,7 +356,7 @@ function Landing() {
       <footer className="bg-primary text-primary-foreground py-10">
         <div className="container mx-auto px-6 flex flex-wrap items-center justify-between gap-4">
           <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
-          <p className="text-sm text-primary-foreground/60">© 2026 BSS. Все права защищены.</p>
+          <p className="text-sm text-gray-300">© 2026 BSS. Все права защищены.</p>
         </div>
       </footer>
     </div>
