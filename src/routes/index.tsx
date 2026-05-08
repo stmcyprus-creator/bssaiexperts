@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import heroImg from "@/assets/hero-interior.jpg";
+import logo from "@/assets/logo.svg";
 import apt1 from "@/assets/portfolio-apt-1.jpg";
 import apt2 from "@/assets/portfolio-apt-2.jpg";
 import office1 from "@/assets/portfolio-office-1.jpg";
@@ -19,9 +20,9 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "СтройМастер — Ремонт квартир и офисов под ключ" },
+      { title: "BSS — Ремонт квартир и офисов под ключ" },
       { name: "description", content: "Дизайнерский, капитальный и косметический ремонт квартир и офисов. Прозрачная смета, технадзор, сдача в срок." },
-      { property: "og:title", content: "СтройМастер — Ремонт под ключ" },
+      { property: "og:title", content: "BSS — Ремонт под ключ" },
       { property: "og:description", content: "Ремонт квартир и офисов с гарантией качества. Калькулятор стоимости онлайн." },
     ],
   }),
@@ -322,10 +323,8 @@ function Landing() {
 
       <footer className="bg-primary text-primary-foreground py-10">
         <div className="container mx-auto px-6 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-extrabold text-xl">
-            <ClipboardList className="h-6 w-6 text-accent" /> СтройМастер
-          </div>
-          <p className="text-sm text-primary-foreground/60">© 2026 СтройМастер. Все права защищены.</p>
+          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-14 w-auto brightness-0 invert" />
+          <p className="text-sm text-primary-foreground/60">© 2026 BSS. Все права защищены.</p>
         </div>
       </footer>
     </div>
@@ -335,9 +334,9 @@ function Landing() {
 function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 font-extrabold text-lg">
-          <ClipboardList className="h-6 w-6 text-accent" /> СтройМастер
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#home" className="flex items-center">
+          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-14 w-auto" />
         </a>
         <nav className="hidden md:flex gap-8 text-sm font-semibold">
           {[["#services","Услуги"],["#portfolio","Портфолио"],["#prices","Цены"],["#process","Этапы"],["#contact","Контакты"]].map(([h,l])=>(
