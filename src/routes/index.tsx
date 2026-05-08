@@ -291,9 +291,9 @@ function Landing() {
             </p>
             <div className="space-y-4">
               {[
-                { icon: Phone, label: "+7 (495) 123-45-67" },
-                { icon: Mail, label: "info@stroymaster.ru" },
-                { icon: MapPin, label: "Москва, ул. Строителей, 12, офис 401" },
+                { icon: Phone, label: "+7 904 680 87 83" },
+                { icon: Mail, label: "info@bss.ru" },
+                { icon: MapPin, label: "г. Липецк, ул. Толстого, 46" },
               ].map(({icon:Icon, label}) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center">
