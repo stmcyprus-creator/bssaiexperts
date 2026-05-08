@@ -98,17 +98,9 @@ function Landing() {
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base" style={{ boxShadow: "var(--shadow-accent)" }}>
                 Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-white/10 text-white border-white/40 hover:bg-white/20 hover:text-white">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary">
                 Смотреть работы
               </Button>
-            </div>
-            <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg">
-              {[["340+", "объектов"], ["16 лет", "на рынке"], ["5 лет", "гарантии"]].map(([n, l]) => (
-                <div key={l}>
-                  <div className="text-3xl font-extrabold text-accent">{n}</div>
-                  <div className="text-sm text-white/70 mt-1">{l}</div>
-                </div>
-              ))}
             </div>
           </div>
 
