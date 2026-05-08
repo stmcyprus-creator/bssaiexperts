@@ -351,7 +351,7 @@ function Header() {
         <a href="#home" className="flex items-center">
           <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
         </a>
-        <nav className="hidden md:flex gap-8 text-[15px] font-medium tracking-wide uppercase font-serif">
+        <nav className="hidden md:flex gap-8 text-[15px] font-extrabold tracking-wide uppercase">
           {[["#services","Услуги"],["#portfolio","Портфолио"],["#prices","Цены"],["#process","Этапы"],["#contact","Контакты"]].map(([h,l])=>(
             <a key={h} href={h} className="hover:text-accent transition-colors">{l}</a>
           ))}
