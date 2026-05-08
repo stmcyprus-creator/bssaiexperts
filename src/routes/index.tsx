@@ -324,8 +324,8 @@ function Landing() {
               ))}
             </div>
             <div className="flex gap-3 mt-8">
-              <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
-              <Button size="lg" variant="outline" className="gap-2 border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"><Send className="h-5 w-5" /> Telegram</Button>
+              <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-colors"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
+              <Button size="lg" variant="outline" className="gap-2 border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground active:bg-accent/80 active:text-accent-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-colors"><Send className="h-5 w-5" /> Telegram</Button>
             </div>
           </div>
           <form className="bg-card rounded-2xl p-8 md:p-10 space-y-5" style={{ boxShadow: "var(--shadow-card)" }} onSubmit={(e)=>e.preventDefault()}>
@@ -354,10 +354,15 @@ function Landing() {
         </div>
       </section>
 
-      <footer className="bg-primary text-primary-foreground py-10">
-        <div className="container mx-auto px-6 flex flex-wrap items-center justify-between gap-4">
+      <footer className="bg-primary text-gray-300 py-12">
+        <div className="container mx-auto px-6 grid gap-8 md:grid-cols-3 items-start">
           <img src={logoFooter} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
-          <p className="text-sm text-gray-300">© 2026 BSS. Все права защищены.</p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm md:justify-center">
+            {[["#services","Услуги"],["#portfolio","Портфолио"],["#prices","Цены"],["#process","Этапы"]].map(([h,l])=>(
+              <a key={h} href={h} className="hover:text-white transition-colors">{l}</a>
+            ))}
+          </nav>
+          <p className="text-sm md:text-right">© {new Date().getFullYear()} BSS. Все права защищены.</p>
         </div>
       </footer>
     </div>
