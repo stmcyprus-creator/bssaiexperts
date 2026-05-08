@@ -142,8 +142,20 @@ function Landing() {
         </div>
       </section>
 
+      {/* STATS STRIP */}
+      <section className="bg-primary text-primary-foreground py-8">
+        <div className="container mx-auto px-6 grid grid-cols-3 divide-x divide-white/15">
+          {[["340+", "объектов"], ["16 лет", "на рынке"], ["5 лет", "гарантии"]].map(([n, l]) => (
+            <div key={l} className="text-center px-4">
+              <div className="text-3xl md:text-4xl font-extrabold text-accent">{n}</div>
+              <div className="text-sm text-primary-foreground/70 mt-1">{l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* WHY US */}
-      <section className="py-24 container mx-auto px-6">
+      <section className="pt-20 pb-16 container mx-auto px-6">
         <SectionTitle eyebrow="Почему мы" title="Три причины доверить ремонт нам" />
         <div className="grid md:grid-cols-3 gap-6 mt-14">
           {[
@@ -152,8 +164,8 @@ function Landing() {
             { icon: Sparkles, title: "Чистота на объекте", text: "Вывозим мусор и делаем профессиональный клининг перед сдачей." },
           ].map(({icon:Icon, title, text}) => (
             <div key={title} className="bg-card rounded-2xl p-8 border border-border hover:-translate-y-1 transition-transform" style={{ boxShadow: "var(--shadow-card)" }}>
-              <div className="w-14 h-14 rounded-xl bg-accent/15 flex items-center justify-center mb-5">
-                <Icon className="h-7 w-7 text-accent" />
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: "#F5A623" }}>
+                <Icon className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">{title}</h3>
               <p className="text-muted-foreground leading-relaxed">{text}</p>
