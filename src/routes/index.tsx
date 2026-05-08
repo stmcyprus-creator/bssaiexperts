@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import heroImg from "@/assets/hero-interior.jpg";
 import logo from "@/assets/logo.svg";
+import logoFooter from "@/assets/logo-footer.svg";
 import apt1 from "@/assets/portfolio-apt-1.jpg";
 import apt2 from "@/assets/portfolio-apt-2.jpg";
 import office1 from "@/assets/portfolio-office-1.jpg";
