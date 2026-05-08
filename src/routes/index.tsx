@@ -354,10 +354,15 @@ function Landing() {
         </div>
       </section>
 
-      <footer className="bg-primary text-primary-foreground py-10">
-        <div className="container mx-auto px-6 flex flex-wrap items-center justify-between gap-4">
+      <footer className="bg-primary text-gray-300 py-12">
+        <div className="container mx-auto px-6 grid gap-8 md:grid-cols-3 items-start">
           <img src={logoFooter} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
-          <p className="text-sm text-gray-300">© 2026 BSS. Все права защищены.</p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm md:justify-center">
+            {[["#services","Услуги"],["#portfolio","Портфолио"],["#prices","Цены"],["#process","Этапы"]].map(([h,l])=>(
+              <a key={h} href={h} className="hover:text-white transition-colors">{l}</a>
+            ))}
+          </nav>
+          <p className="text-sm md:text-right">© {new Date().getFullYear()} BSS. Все права защищены.</p>
         </div>
       </footer>
     </div>
