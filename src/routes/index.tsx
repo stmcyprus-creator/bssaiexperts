@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import heroImg from "@/assets/hero-interior.jpg";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 import apt1 from "@/assets/portfolio-apt-1.jpg";
 import apt2 from "@/assets/portfolio-apt-2.jpg";
 import office1 from "@/assets/portfolio-office-1.jpg";
@@ -336,7 +336,7 @@ function Landing() {
 
       <footer className="bg-primary text-primary-foreground py-10">
         <div className="container mx-auto px-6 flex flex-wrap items-center justify-between gap-4">
-          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto rounded-md bg-white p-1" />
+          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
           <p className="text-sm text-primary-foreground/60">© 2026 BSS. Все права защищены.</p>
         </div>
       </footer>
