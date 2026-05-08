@@ -292,7 +292,7 @@ function Landing() {
             <div className="space-y-4">
               {[
                 { icon: Phone, label: "+7 904 680 87 83" },
-                { icon: Mail, label: "info@bss.ru" },
+                { icon: Mail, label: "bss-rus@mail.ru" },
                 { icon: MapPin, label: "г. Липецк, ул. Толстого, 46" },
               ].map(({icon:Icon, label}) => (
                 <div key={label} className="flex items-center gap-4">
