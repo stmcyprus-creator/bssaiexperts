@@ -246,8 +246,8 @@ function Landing() {
               { name: "Капитальный", price: "12 000", featured: true, desc: "Полное обновление с заменой коммуникаций", features: ["Всё из косметического", "Замена электрики и сантехники", "Выравнивание стен и полов", "Сан­узел под ключ"] },
               { name: "Премиальный", price: "20 000", desc: "Дизайнерский ремонт по авторскому проекту", features: ["Всё из капитального", "Реализация дизайн-проекта", "Скрытый монтаж, теневые профили", "Премиум-материалы"] },
             ].map((t) => (
-              <div key={t.name} className={`rounded-2xl p-8 ${t.featured ? "bg-accent text-accent-foreground scale-[1.02]" : "bg-white/5 border border-white/10"}`}>
-                {t.featured && <span className="inline-block text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 bg-accent-foreground/10 rounded-full">Популярный</span>}
+              <div key={t.name} className={`rounded-2xl p-8 flex flex-col ${t.featured ? "bg-accent text-accent-foreground scale-[1.02]" : "bg-white/5"}`} style={t.featured ? undefined : { border: "1px solid rgba(255,255,255,0.15)" }}>
+                {t.featured && <span className="inline-block text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 bg-accent-foreground/10 rounded-full self-start">Популярный</span>}
                 <h3 className="text-2xl font-bold mb-2">{t.name}</h3>
                 <p className={`text-sm mb-6 ${t.featured ? "text-accent-foreground/80" : "text-white/70"}`}>{t.desc}</p>
                 <div className="mb-6">
@@ -255,7 +255,7 @@ function Landing() {
                   <span className="text-5xl font-extrabold mx-2">{t.price}</span>
                   <span className="text-sm">₽/м²</span>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-8">
                   {t.features.map(f => (
                     <li key={f} className="flex gap-3 text-sm">
                       <CheckCircle2 className={`h-5 w-5 flex-shrink-0 ${t.featured ? "" : "text-accent"}`} />
@@ -263,6 +263,14 @@ function Landing() {
                     </li>
                   ))}
                 </ul>
+                <Button
+                  variant="outline"
+                  className={`mt-auto w-full h-12 font-semibold ${t.featured
+                    ? "bg-transparent border-2 border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent"
+                    : "bg-transparent border-2 border-white/60 text-white hover:bg-white hover:text-primary"}`}
+                >
+                  {t.featured ? "Выбрать" : "Узнать подробнее"}
+                </Button>
               </div>
             ))}
           </div>
