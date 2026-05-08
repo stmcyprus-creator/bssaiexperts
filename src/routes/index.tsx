@@ -324,8 +324,8 @@ function Landing() {
               ))}
             </div>
             <div className="flex gap-3 mt-8">
-              <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
-              <Button size="lg" variant="outline" className="gap-2 border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"><Send className="h-5 w-5" /> Telegram</Button>
+              <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-colors"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
+              <Button size="lg" variant="outline" className="gap-2 border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground active:bg-accent/80 active:text-accent-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-colors"><Send className="h-5 w-5" /> Telegram</Button>
             </div>
           </div>
           <form className="bg-card rounded-2xl p-8 md:p-10 space-y-5" style={{ boxShadow: "var(--shadow-card)" }} onSubmit={(e)=>e.preventDefault()}>
