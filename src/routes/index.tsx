@@ -98,17 +98,9 @@ function Landing() {
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base" style={{ boxShadow: "var(--shadow-accent)" }}>
                 Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-white/10 text-white border-white/40 hover:bg-white/20 hover:text-white">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary">
                 Смотреть работы
               </Button>
-            </div>
-            <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg">
-              {[["340+", "объектов"], ["16 лет", "на рынке"], ["5 лет", "гарантии"]].map(([n, l]) => (
-                <div key={l}>
-                  <div className="text-3xl font-extrabold text-accent">{n}</div>
-                  <div className="text-sm text-white/70 mt-1">{l}</div>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -150,8 +142,20 @@ function Landing() {
         </div>
       </section>
 
+      {/* STATS STRIP */}
+      <section className="bg-primary text-primary-foreground py-8">
+        <div className="container mx-auto px-6 grid grid-cols-3 divide-x divide-white/15">
+          {[["340+", "объектов"], ["16 лет", "на рынке"], ["5 лет", "гарантии"]].map(([n, l]) => (
+            <div key={l} className="text-center px-4">
+              <div className="text-3xl md:text-4xl font-extrabold text-accent">{n}</div>
+              <div className="text-sm text-primary-foreground/70 mt-1">{l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* WHY US */}
-      <section className="py-24 container mx-auto px-6">
+      <section className="pt-20 pb-16 container mx-auto px-6">
         <SectionTitle eyebrow="Почему мы" title="Три причины доверить ремонт нам" />
         <div className="grid md:grid-cols-3 gap-6 mt-14">
           {[
@@ -160,8 +164,8 @@ function Landing() {
             { icon: Sparkles, title: "Чистота на объекте", text: "Вывозим мусор и делаем профессиональный клининг перед сдачей." },
           ].map(({icon:Icon, title, text}) => (
             <div key={title} className="bg-card rounded-2xl p-8 border border-border hover:-translate-y-1 transition-transform" style={{ boxShadow: "var(--shadow-card)" }}>
-              <div className="w-14 h-14 rounded-xl bg-accent/15 flex items-center justify-center mb-5">
-                <Icon className="h-7 w-7 text-accent" />
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: "#F5A623" }}>
+                <Icon className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">{title}</h3>
               <p className="text-muted-foreground leading-relaxed">{text}</p>
@@ -217,11 +221,18 @@ function Landing() {
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{p.done}</p>
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <span className="text-xs text-muted-foreground">Стоимость работ</span>
-                  <span className="font-bold text-primary">{p.price}</span>
+                  {p.price === "—"
+                    ? <span className="font-medium text-muted-foreground">по согласованию</span>
+                    : <span className="font-bold text-primary">{p.price}</span>}
                 </div>
               </div>
             </article>
           ))}
+        </div>
+        <div className="flex justify-center mt-10">
+          <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            Показать все работы
+          </Button>
         </div>
       </section>
 
@@ -235,8 +246,8 @@ function Landing() {
               { name: "Капитальный", price: "12 000", featured: true, desc: "Полное обновление с заменой коммуникаций", features: ["Всё из косметического", "Замена электрики и сантехники", "Выравнивание стен и полов", "Сан­узел под ключ"] },
               { name: "Премиальный", price: "20 000", desc: "Дизайнерский ремонт по авторскому проекту", features: ["Всё из капитального", "Реализация дизайн-проекта", "Скрытый монтаж, теневые профили", "Премиум-материалы"] },
             ].map((t) => (
-              <div key={t.name} className={`rounded-2xl p-8 ${t.featured ? "bg-accent text-accent-foreground scale-[1.02]" : "bg-white/5 border border-white/10"}`}>
-                {t.featured && <span className="inline-block text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 bg-accent-foreground/10 rounded-full">Популярный</span>}
+              <div key={t.name} className={`rounded-2xl p-8 flex flex-col ${t.featured ? "bg-accent text-accent-foreground scale-[1.02]" : "bg-white/5"}`} style={t.featured ? undefined : { border: "1px solid rgba(255,255,255,0.15)" }}>
+                {t.featured && <span className="inline-block text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 bg-accent-foreground/10 rounded-full self-start">Популярный</span>}
                 <h3 className="text-2xl font-bold mb-2">{t.name}</h3>
                 <p className={`text-sm mb-6 ${t.featured ? "text-accent-foreground/80" : "text-white/70"}`}>{t.desc}</p>
                 <div className="mb-6">
@@ -244,7 +255,7 @@ function Landing() {
                   <span className="text-5xl font-extrabold mx-2">{t.price}</span>
                   <span className="text-sm">₽/м²</span>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-8">
                   {t.features.map(f => (
                     <li key={f} className="flex gap-3 text-sm">
                       <CheckCircle2 className={`h-5 w-5 flex-shrink-0 ${t.featured ? "" : "text-accent"}`} />
@@ -252,6 +263,14 @@ function Landing() {
                     </li>
                   ))}
                 </ul>
+                <Button
+                  variant="outline"
+                  className={`mt-auto w-full h-12 font-semibold ${t.featured
+                    ? "bg-transparent border-2 border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent"
+                    : "bg-transparent border-2 border-white/60 text-white hover:bg-white hover:text-primary"}`}
+                >
+                  {t.featured ? "Выбрать" : "Узнать подробнее"}
+                </Button>
               </div>
             ))}
           </div>
@@ -304,8 +323,8 @@ function Landing() {
               ))}
             </div>
             <div className="flex gap-3 mt-8">
-              <Button variant="outline" size="lg" className="gap-2"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
-              <Button variant="outline" size="lg" className="gap-2"><Send className="h-5 w-5" /> Telegram</Button>
+              <Button size="lg" className="gap-2 text-white hover:opacity-90" style={{ backgroundColor: "#25D366" }}><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
+              <Button size="lg" className="gap-2 text-white hover:opacity-90" style={{ backgroundColor: "#0088CC" }}><Send className="h-5 w-5" /> Telegram</Button>
             </div>
           </div>
           <form className="bg-card rounded-2xl p-8 md:p-10 space-y-5" style={{ boxShadow: "var(--shadow-card)" }} onSubmit={(e)=>e.preventDefault()}>
@@ -346,7 +365,7 @@ function Landing() {
 
 function Header() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
+    <header className="fixed top-0 inset-x-0 z-50 bg-white" style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <a href="#home" className="flex items-center">
           <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
