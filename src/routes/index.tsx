@@ -319,6 +319,19 @@ function Landing() {
             <p className="text-xs text-muted-foreground text-center">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
           </form>
         </div>
+        <div className="container mx-auto px-6 mt-12">
+          <div className="rounded-2xl overflow-hidden border border-border" style={{ boxShadow: "var(--shadow-card)" }}>
+            <iframe
+              title="Карта: г. Липецк, ул. Толстого, 46"
+              src="https://yandex.ru/map-widget/v1/?ll=39.594000%2C52.610000&mode=search&text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA%2C%20%D1%83%D0%BB.%20%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%BE%D0%B3%D0%BE%2C%2046&z=16"
+              width="100%"
+              height="420"
+              loading="lazy"
+              allowFullScreen
+              className="block w-full border-0"
+            />
+          </div>
+        </div>
       </section>
 
       <footer className="bg-primary text-primary-foreground py-10">
