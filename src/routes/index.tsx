@@ -224,7 +224,7 @@ function Landing() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-24 bg-secondary/40">
+      <section id="services" className="scroll-mt-20 py-24 bg-secondary/40">
         <div className="container mx-auto px-6">
           <SectionTitle eyebrow="Услуги" title="Что мы делаем" />
           <div className="grid md:grid-cols-2 gap-6 mt-14">
@@ -243,7 +243,7 @@ function Landing() {
       </section>
 
       {/* PORTFOLIO */}
-      <section id="portfolio" className="py-24 container mx-auto px-6">
+      <section id="portfolio" className="scroll-mt-20 py-24 container mx-auto px-6">
         <SectionTitle eyebrow="Портфолио" title="Наши работы" />
         <div className="flex justify-center gap-2 mt-10 mb-10">
           {([["all","Все объекты"],["apt","Квартиры"],["office","Офисы"]] as const).map(([k, l]) => (
@@ -286,7 +286,7 @@ function Landing() {
       </section>
 
       {/* PRICES */}
-      <section id="prices" className="py-24 bg-primary text-primary-foreground">
+      <section id="prices" className="scroll-mt-20 py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-6">
           <SectionTitle eyebrow="Цены" title="Прайс-лист" light />
           <div className="grid md:grid-cols-3 gap-6 mt-14">
@@ -327,7 +327,7 @@ function Landing() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" className="py-24 container mx-auto px-6">
+      <section id="process" className="scroll-mt-20 py-24 container mx-auto px-6">
         <SectionTitle eyebrow="Этапы" title="Как мы работаем" />
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mt-14">
           {[
@@ -350,7 +350,7 @@ function Landing() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-24 bg-secondary/40">
+      <section id="contact" className="scroll-mt-20 py-24 bg-secondary/40">
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12">
           <div>
             <SectionTitle eyebrow="Контакты" title="Обсудим ваш проект" align="left" />
