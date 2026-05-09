@@ -385,16 +385,69 @@ function Landing() {
       </section>
 
       <footer className="bg-primary text-gray-300 py-10 md:py-12">
-        <div className="container mx-auto px-4 sm:px-6 grid gap-6 md:gap-8 md:grid-cols-3 items-center text-center md:text-left">
+        <div className="container mx-auto px-4 sm:px-6 grid gap-8 md:gap-8 md:grid-cols-3 items-center text-center md:text-left">
           <img src={logoFooter} alt="BSS — Бизнес. Стратегии. Сервис" className="h-14 md:h-16 w-auto mx-auto md:mx-0" />
-          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-3 text-sm">
-            {[["#services","Услуги"],["#portfolio","Портфолио"],["#prices","Цены"],["#process","Этапы"]].map(([h,l])=>(
-              <a key={h} href={h} className="hover:text-white transition-colors">{l}</a>
-            ))}
+          <nav aria-label="Быстрые ссылки в футере" className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm justify-items-center md:flex md:flex-wrap md:justify-center md:gap-x-5">
+            {NAV_LINKS.map(([h, l]) => {
+              const id = h.slice(1);
+              const isActive = activeSection === id;
+              return (
+                <a
+                  key={h}
+                  href={h}
+                  aria-label={`Перейти к разделу «${l}»`}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`rounded px-1 py-0.5 transition-colors hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary ${
+                    isActive ? "text-white font-semibold underline underline-offset-4 decoration-accent" : ""
+                  }`}
+                >
+                  {l}
+                </a>
+              );
+            })}
           </nav>
-          <p className="text-xs sm:text-sm md:text-right">© {new Date().getFullYear()} BSS. Все права защищены.</p>
+          <p className="text-xs sm:text-sm leading-relaxed md:text-right">© {new Date().getFullYear()} BSS. Все права защищены.</p>
         </div>
       </footer>
+
+      {/* MOBILE QUICK CONTACT BAR */}
+      <div
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-primary border-t border-white/10"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        role="navigation"
+        aria-label="Быстрый контакт"
+      >
+        <div className="grid grid-cols-3 h-16">
+          <a
+            href="tel:+79046808783"
+            aria-label="Позвонить по телефону +7 904 680 87 83"
+            className="flex flex-col items-center justify-center gap-1 text-primary-foreground hover:bg-white/10 active:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset transition-colors"
+          >
+            <Phone className="h-5 w-5" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Звонок</span>
+          </a>
+          <a
+            href="https://wa.me/79046808783"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в WhatsApp"
+            className="flex flex-col items-center justify-center gap-1 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset transition-colors"
+          >
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">WhatsApp</span>
+          </a>
+          <a
+            href="https://t.me/+79046808783"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в Telegram"
+            className="flex flex-col items-center justify-center gap-1 text-primary-foreground hover:bg-white/10 active:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset transition-colors"
+          >
+            <Send className="h-5 w-5" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Telegram</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
