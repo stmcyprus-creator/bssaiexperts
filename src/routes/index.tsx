@@ -69,12 +69,42 @@ const portfolio = [
   },
 ];
 
+const NAV_LINKS: [string, string][] = [
+  ["#services", "Услуги"],
+  ["#portfolio", "Портфолио"],
+  ["#prices", "Цены"],
+  ["#process", "Этапы"],
+];
+
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState<string>("");
+  useEffect(() => {
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (elements.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [ids.join(",")]);
+  return active;
+}
+
 function Landing() {
   const [filter, setFilter] = useState<"all" | "apt" | "office">("all");
   const [area, setArea] = useState(50);
   const [type, setType] = useState<"cosmetic" | "capital" | "premium">("capital");
   const rates = { cosmetic: 5000, capital: 12000, premium: 20000 };
   const total = (area * rates[type]).toLocaleString("ru-RU");
+  const activeSection = useActiveSection(["services", "portfolio", "prices", "process", "contact"]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
