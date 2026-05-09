@@ -76,24 +76,42 @@ const NAV_LINKS: [string, string][] = [
   ["#process", "Этапы"],
 ];
 
+// Header height in px (h-20 = 80). Used to offset both anchor scroll and active-section detection.
+const HEADER_OFFSET = 80;
+
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string>("");
   useEffect(() => {
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
-    if (elements.length === 0) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
-    );
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const getElements = () =>
+      ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
+
+    const compute = () => {
+      const els = getElements();
+      if (els.length === 0) return;
+      // Activation line sits just below the fixed header.
+      const line = HEADER_OFFSET + 8;
+      let current = "";
+      for (const el of els) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top - line <= 0 && rect.bottom - line > 0) {
+          current = el.id;
+          break;
+        }
+      }
+      // Near the bottom of the page — force the last section active.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        current = els[els.length - 1].id;
+      }
+      setActive(current);
+    };
+
+    compute();
+    window.addEventListener("scroll", compute, { passive: true });
+    window.addEventListener("resize", compute);
+    return () => {
+      window.removeEventListener("scroll", compute);
+      window.removeEventListener("resize", compute);
+    };
   }, [ids.join(",")]);
   return active;
 }
