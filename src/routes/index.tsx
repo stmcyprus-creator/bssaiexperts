@@ -76,24 +76,42 @@ const NAV_LINKS: [string, string][] = [
   ["#process", "Этапы"],
 ];
 
+// Header height in px (h-20 = 80). Used to offset both anchor scroll and active-section detection.
+const HEADER_OFFSET = 80;
+
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string>("");
   useEffect(() => {
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
-    if (elements.length === 0) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
-    );
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const getElements = () =>
+      ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
+
+    const compute = () => {
+      const els = getElements();
+      if (els.length === 0) return;
+      // Activation line sits just below the fixed header.
+      const line = HEADER_OFFSET + 8;
+      let current = "";
+      for (const el of els) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top - line <= 0 && rect.bottom - line > 0) {
+          current = el.id;
+          break;
+        }
+      }
+      // Near the bottom of the page — force the last section active.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        current = els[els.length - 1].id;
+      }
+      setActive(current);
+    };
+
+    compute();
+    window.addEventListener("scroll", compute, { passive: true });
+    window.addEventListener("resize", compute);
+    return () => {
+      window.removeEventListener("scroll", compute);
+      window.removeEventListener("resize", compute);
+    };
   }, [ids.join(",")]);
   return active;
 }
@@ -206,7 +224,7 @@ function Landing() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-24 bg-secondary/40">
+      <section id="services" className="scroll-mt-20 py-24 bg-secondary/40">
         <div className="container mx-auto px-6">
           <SectionTitle eyebrow="Услуги" title="Что мы делаем" />
           <div className="grid md:grid-cols-2 gap-6 mt-14">
@@ -225,7 +243,7 @@ function Landing() {
       </section>
 
       {/* PORTFOLIO */}
-      <section id="portfolio" className="py-24 container mx-auto px-6">
+      <section id="portfolio" className="scroll-mt-20 py-24 container mx-auto px-6">
         <SectionTitle eyebrow="Портфолио" title="Наши работы" />
         <div className="flex justify-center gap-2 mt-10 mb-10">
           {([["all","Все объекты"],["apt","Квартиры"],["office","Офисы"]] as const).map(([k, l]) => (
@@ -268,7 +286,7 @@ function Landing() {
       </section>
 
       {/* PRICES */}
-      <section id="prices" className="py-24 bg-primary text-primary-foreground">
+      <section id="prices" className="scroll-mt-20 py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-6">
           <SectionTitle eyebrow="Цены" title="Прайс-лист" light />
           <div className="grid md:grid-cols-3 gap-6 mt-14">
@@ -309,7 +327,7 @@ function Landing() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" className="py-24 container mx-auto px-6">
+      <section id="process" className="scroll-mt-20 py-24 container mx-auto px-6">
         <SectionTitle eyebrow="Этапы" title="Как мы работаем" />
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mt-14">
           {[
@@ -332,7 +350,7 @@ function Landing() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-24 bg-secondary/40">
+      <section id="contact" className="scroll-mt-20 py-24 bg-secondary/40">
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12">
           <div>
             <SectionTitle eyebrow="Контакты" title="Обсудим ваш проект" align="left" />
