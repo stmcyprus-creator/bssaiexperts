@@ -179,6 +179,63 @@ function Reveal({
   );
 }
 
+/**
+ * Subtle scroll-linked parallax: translates the element by ±amount px
+ * based on its position relative to the viewport center. rAF-throttled.
+ */
+function useParallax<T extends HTMLElement = HTMLElement>(amount = 22) {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let ticking = false;
+    let rafId = 0;
+
+    const update = () => {
+      ticking = false;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // progress: -1 (below viewport) → 0 (center) → 1 (above)
+      const center = rect.top + rect.height / 2;
+      const progress = (vh / 2 - center) / (vh / 2 + rect.height / 2);
+      const clamped = Math.max(-1, Math.min(1, progress));
+      el.style.transform = `translate3d(0, ${(-clamped * amount).toFixed(2)}px, 0)`;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      rafId = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [amount]);
+  return ref;
+}
+
+function ParallaxCard({
+  amount,
+  className = "",
+  children,
+}: { amount: number; className?: string; children: React.ReactNode }) {
+  const ref = useParallax<HTMLDivElement>(amount);
+  return (
+    <div ref={ref} className={className} style={{ willChange: "transform", transition: "transform 120ms linear" }}>
+      {children}
+    </div>
+  );
+}
+
 function Landing() {
   const [filter, setFilter] = useState<"all" | "apt" | "office">("all");
   const [area, setArea] = useState(50);
@@ -284,13 +341,18 @@ function Landing() {
             { icon: FileText, title: "Прозрачная смета", text: "Цена в договоре не меняется в процессе работы. Никаких «вылезших» расходов." },
             { icon: ShieldCheck, title: "Технический надзор", text: "Прораб проверяет каждый этап. Отчёт с фото — раз в неделю в мессенджер." },
             { icon: Sparkles, title: "Чистота на объекте", text: "Вывозим мусор и делаем профессиональный клининг перед сдачей." },
-          ].map(({icon:Icon, title, text}, i) => (
-            <Reveal key={title} delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card bg-pattern-lines">
-              <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
-              <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
-              <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
-            </Reveal>
-          ))}
+          ].map(({icon:Icon, title, text}, i) => {
+            const amounts = [22, -26, 19]; // mixed up/down, 5–7mm
+            return (
+              <ParallaxCard key={title} amount={amounts[i]}>
+                <Reveal delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card bg-pattern-lines h-full">
+                  <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
+                  <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
+                </Reveal>
+              </ParallaxCard>
+            );
+          })}
         </div>
       </section>
 
