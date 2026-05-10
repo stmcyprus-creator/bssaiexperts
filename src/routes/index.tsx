@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import heroImg from "@/assets/hero-interior.jpg";
 import logo from "@/assets/logo.svg";
 import logoFooter from "@/assets/logo-footer.svg";
@@ -85,10 +85,14 @@ function useActiveSection(ids: string[]) {
     const getElements = () =>
       ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
 
+    let rafId = 0;
+    let ticking = false;
+    let lastActive = "";
+
     const compute = () => {
+      ticking = false;
       const els = getElements();
       if (els.length === 0) return;
-      // Activation line sits just below the fixed header.
       const line = HEADER_OFFSET + 8;
       let current = "";
       for (const el of els) {
@@ -98,22 +102,81 @@ function useActiveSection(ids: string[]) {
           break;
         }
       }
-      // Near the bottom of the page — force the last section active.
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
         current = els[els.length - 1].id;
       }
-      setActive(current);
+      if (current !== lastActive) {
+        lastActive = current;
+        setActive(current);
+      }
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      rafId = window.requestAnimationFrame(compute);
     };
 
     compute();
-    window.addEventListener("scroll", compute, { passive: true });
-    window.addEventListener("resize", compute);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
-      window.removeEventListener("scroll", compute);
-      window.removeEventListener("resize", compute);
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, [ids.join(",")]);
   return active;
+}
+
+function useReveal<T extends HTMLElement = HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      el.classList.add("is-visible");
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-visible");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
+function Reveal({
+  as: As = "div",
+  delay = 0,
+  className = "",
+  children,
+  ...rest
+}: { as?: any; delay?: number; className?: string; children: React.ReactNode } & React.HTMLAttributes<HTMLElement>) {
+  const ref = useReveal<HTMLElement>();
+  return (
+    <As
+      ref={ref as any}
+      className={`reveal ${className}`}
+      style={{ transitionDelay: delay ? `${delay}ms` : undefined }}
+      {...rest}
+    >
+      {children}
+    </As>
+  );
 }
 
 function Landing() {
@@ -221,12 +284,12 @@ function Landing() {
             { icon: FileText, title: "Прозрачная смета", text: "Цена в договоре не меняется в процессе работы. Никаких «вылезших» расходов." },
             { icon: ShieldCheck, title: "Технический надзор", text: "Прораб проверяет каждый этап. Отчёт с фото — раз в неделю в мессенджер." },
             { icon: Sparkles, title: "Чистота на объекте", text: "Вывозим мусор и делаем профессиональный клининг перед сдачей." },
-          ].map(({icon:Icon, title, text}) => (
-            <div key={title} className="bg-background p-8 group transition-colors hover:bg-card">
+          ].map(({icon:Icon, title, text}, i) => (
+            <Reveal key={title} delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card">
               <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
               <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
               <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -263,7 +326,7 @@ function Landing() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolio.filter(p => filter==="all" || p.cat===filter).map((p, i) => (
-            <article key={i} className="group bg-card overflow-hidden border-t-2 border-accent">
+            <Reveal as="article" key={`${filter}-${i}`} delay={(i % 3) * 80} className="group bg-card overflow-hidden border-t-2 border-accent">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={p.img} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
@@ -283,7 +346,7 @@ function Landing() {
                     : <span className="font-bold text-foreground tabular-nums">{p.price}</span>}
                 </div>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
         <div className="flex justify-center mt-10">
@@ -302,8 +365,8 @@ function Landing() {
               { name: "Косметический", price: "5 000", desc: "Покраска, обои, замена напольных покрытий", features: ["Демонтаж старой отделки", "Шпаклёвка и покраска стен", "Укладка ламината", "Замена плинтусов"] },
               { name: "Капитальный", price: "12 000", featured: true, desc: "Полное обновление с заменой коммуникаций", features: ["Всё из косметического", "Замена электрики и сантехники", "Выравнивание стен и полов", "Сан­узел под ключ"] },
               { name: "Премиальный", price: "20 000", desc: "Дизайнерский ремонт по авторскому проекту", features: ["Всё из капитального", "Реализация дизайн-проекта", "Скрытый монтаж, теневые профили", "Премиум-материалы"] },
-            ].map((t) => (
-              <div key={t.name} className={`p-8 flex flex-col border ${t.featured ? "bg-accent text-accent-foreground border-accent scale-[1.02]" : "bg-white/[0.03] border-white/15"}`}>
+            ].map((t, i) => (
+              <Reveal key={t.name} delay={i * 100} className={`p-8 flex flex-col border ${t.featured ? "bg-accent text-accent-foreground border-accent scale-[1.02]" : "bg-white/[0.03] border-white/15"}`}>
                 {t.featured && <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] mb-3 px-3 py-1 border border-accent-foreground/40 self-start">Популярный</span>}
                 <h3 className="font-display text-2xl font-bold mb-2">{t.name}</h3>
                 <p className={`text-sm mb-6 font-light ${t.featured ? "text-accent-foreground/85" : "text-white/65"}`}>{t.desc}</p>
@@ -328,7 +391,7 @@ function Landing() {
                 >
                   {t.featured ? "Выбрать" : "Узнать подробнее"}
                 </Button>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -345,14 +408,14 @@ function Landing() {
             { icon: Wrench, title: "Ремонт", text: "Все этапы по графику" },
             { icon: CheckCircle2, title: "Сдача", text: "Клининг и гарантия 5 лет" },
           ].map((s, i) => (
-            <div key={s.title} className="relative bg-card p-6 border-t-2 border-accent">
+            <Reveal key={s.title} delay={i * 80} className="relative bg-card p-6 border-t-2 border-accent">
               <div className="absolute -top-px right-4 font-display italic text-accent text-3xl font-bold leading-none -translate-y-1/2 bg-background px-2">
                 {String(i+1).padStart(2,"0")}
               </div>
               <s.icon className="h-9 w-9 text-accent mb-4" strokeWidth={1.5} />
               <h3 className="font-display font-bold mb-1 text-lg">{s.title}</h3>
               <p className="text-sm text-muted-foreground font-light">{s.text}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -513,8 +576,9 @@ function Header() {
 }
 
 function SectionTitle({ eyebrow, title, light, align = "center" }: { eyebrow: string; title: string; light?: boolean; align?: "left"|"center" }) {
+  const ref = useReveal<HTMLDivElement>();
   return (
-    <div className={align === "center" ? "text-center max-w-2xl mx-auto" : ""}>
+    <div ref={ref} className={`reveal ${align === "center" ? "text-center max-w-2xl mx-auto" : ""}`}>
       <span className="inline-block text-[11px] font-bold uppercase tracking-[0.25em] mb-3 text-accent">{eyebrow}</span>
       <h2 className={`font-display text-4xl md:text-5xl font-bold leading-tight ${light ? "text-primary-foreground" : "text-foreground"}`}>{title}</h2>
       <span className="block w-12 h-px bg-accent mt-5 mx-auto" style={{ marginLeft: align === "left" ? 0 : undefined, marginRight: align === "left" ? "auto" : undefined }} aria-hidden />
