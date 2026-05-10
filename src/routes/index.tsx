@@ -253,10 +253,10 @@ function Landing() {
       {/* PORTFOLIO */}
       <section id="portfolio" className="scroll-mt-20 py-24 container mx-auto px-6">
         <SectionTitle eyebrow="Портфолио" title="Наши работы" />
-        <div className="flex justify-center gap-2 mt-10 mb-10">
+        <div className="flex justify-center gap-0 mt-10 mb-10 border border-border w-fit mx-auto">
           {([["all","Все объекты"],["apt","Квартиры"],["office","Офисы"]] as const).map(([k, l]) => (
             <button key={k} onClick={()=>setFilter(k)}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${filter===k ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/70"}`}>
+              className={`px-6 py-2.5 text-sm font-semibold transition-all border-r border-border last:border-r-0 ${filter===k ? "bg-accent text-accent-foreground" : "bg-transparent text-foreground hover:bg-card"}`}>
               {l}
             </button>
           ))}
