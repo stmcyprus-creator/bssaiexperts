@@ -17,17 +17,9 @@ import {
   MessageCircle, Send, ArrowRight,
 } from "lucide-react";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "BSS — Ремонт квартир и офисов под ключ" },
-      { name: "description", content: "Дизайнерский, капитальный и косметический ремонт квартир и офисов. Прозрачная смета, технадзор, сдача в срок." },
-      { property: "og:title", content: "BSS — Ремонт под ключ" },
-      { property: "og:description", content: "Ремонт квартир и офисов с гарантией качества. Калькулятор стоимости онлайн." },
-    ],
-  }),
-  component: Landing,
-});
+export default function IndexPage() {
+  return <Landing />;
+}
 
 const portfolio = [
   {
