@@ -197,26 +197,26 @@ function Landing() {
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative z-10 container mx-auto px-6 py-24 grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white">
-            <span className="inline-block px-4 py-1.5 border border-accent/60 text-accent text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
+            <Reveal as="span" className="inline-block px-4 py-1.5 border border-accent/60 text-accent text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
               Ремонт под ключ — с 2008
-            </span>
-            <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.02] mb-6 tracking-tight">
+            </Reveal>
+            <Reveal as="h1" delay={120} className="font-display text-5xl md:text-7xl font-bold leading-[1.02] mb-6 tracking-tight">
               Ремонт квартир и&nbsp;офисов{" "}
               <em className="not-italic block md:inline">
                 <span className="font-display italic font-medium text-accent">без сюрпризов</span>
               </em>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl font-body font-light leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delay={240} className="text-lg md:text-xl text-white/80 mb-8 max-w-xl font-body font-light leading-relaxed">
               Прозрачная смета, фиксированная цена и&nbsp;сдача в&nbsp;срок. Технадзор на&nbsp;каждом этапе.
-            </p>
-            <div className="flex flex-wrap gap-4">
+            </Reveal>
+            <Reveal delay={360} className="flex flex-wrap gap-4">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base rounded-none" style={{ boxShadow: "var(--shadow-accent)" }}>
                 Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border border-white/70 hover:bg-white hover:text-primary rounded-none">
                 Смотреть работы
               </Button>
-            </div>
+            </Reveal>
           </div>
 
           {/* Calculator with corner accents */}
@@ -227,9 +227,9 @@ function Landing() {
             <span className="absolute -bottom-px -left-px w-6 h-6 border-b-2 border-l-2 border-accent" aria-hidden />
             <span className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-accent" aria-hidden />
 
-            <div className="text-[11px] tracking-[0.25em] uppercase text-accent font-semibold mb-2">Калькулятор</div>
-            <h3 className="font-display text-3xl font-bold mb-1">Стоимость ремонта</h3>
-            <p className="text-sm text-muted-foreground mb-6 font-light italic">за тридцать секунд</p>
+            <Reveal as="div" className="text-[11px] tracking-[0.25em] uppercase text-accent font-semibold mb-2">Калькулятор</Reveal>
+            <Reveal as="h3" delay={100} className="font-display text-3xl font-bold mb-1">Стоимость ремонта</Reveal>
+            <Reveal as="p" delay={200} className="text-sm text-muted-foreground mb-6 font-light italic">за тридцать секунд</Reveal>
             <div className="space-y-5">
               <div>
                 <Label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Тип ремонта</Label>
@@ -428,13 +428,13 @@ function Landing() {
             <span className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-accent" aria-hidden />
             <span className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-accent" aria-hidden />
             <div className="relative max-w-md mx-auto lg:mx-0 lg:ml-auto lg:mr-12">
-              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Контакты</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold mt-3 mb-4 leading-tight">
+              <Reveal as="span" className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Контакты</Reveal>
+              <Reveal as="h2" delay={120} className="font-display text-4xl md:text-5xl font-bold mt-3 mb-4 leading-tight">
                 Обсудим <em className="font-display italic font-medium text-accent">ваш проект</em>
-              </h2>
-              <p className="text-white/75 mt-4 mb-10 font-light leading-relaxed">
+              </Reveal>
+              <Reveal as="p" delay={240} className="text-white/75 mt-4 mb-10 font-light leading-relaxed">
                 Оставьте заявку — перезвоним в&nbsp;течение 15&nbsp;минут и&nbsp;согласуем удобное время для бесплатного замера.
-              </p>
+              </Reveal>
               <div className="space-y-5 border-t border-white/15 pt-8">
                 {[
                   { icon: Phone, label: "+7 904 680 87 83", href: "tel:+79046808783" },
@@ -461,10 +461,10 @@ function Landing() {
             <span className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-accent" aria-hidden />
             <span className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-accent" aria-hidden />
             <form className="w-full max-w-md mx-auto lg:mx-0 lg:mr-auto lg:ml-12 space-y-5" onSubmit={(e)=>e.preventDefault()}>
-              <div>
+              <Reveal>
                 <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Заявка</span>
                 <h3 className="font-display text-3xl font-bold mt-2">На&nbsp;бесплатный <em className="italic font-medium text-accent">замер</em></h3>
-              </div>
+              </Reveal>
               <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Имя</Label><Input placeholder="Как к вам обращаться" className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent" /></div>
               <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Телефон</Label><Input placeholder="+7 (___) ___-__-__" className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent" /></div>
               <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Сообщение</Label><Textarea placeholder="Тип объекта, площадь, пожелания" rows={3} className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent resize-none" /></div>
