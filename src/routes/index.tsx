@@ -341,13 +341,18 @@ function Landing() {
             { icon: FileText, title: "Прозрачная смета", text: "Цена в договоре не меняется в процессе работы. Никаких «вылезших» расходов." },
             { icon: ShieldCheck, title: "Технический надзор", text: "Прораб проверяет каждый этап. Отчёт с фото — раз в неделю в мессенджер." },
             { icon: Sparkles, title: "Чистота на объекте", text: "Вывозим мусор и делаем профессиональный клининг перед сдачей." },
-          ].map(({icon:Icon, title, text}, i) => (
-            <Reveal key={title} delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card bg-pattern-lines">
-              <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
-              <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
-              <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
-            </Reveal>
-          ))}
+          ].map(({icon:Icon, title, text}, i) => {
+            const amounts = [22, -26, 19]; // mixed up/down, 5–7mm
+            return (
+              <ParallaxCard key={title} amount={amounts[i]}>
+                <Reveal delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card bg-pattern-lines h-full">
+                  <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
+                  <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
+                </Reveal>
+              </ParallaxCard>
+            );
+          })}
         </div>
       </section>
 
