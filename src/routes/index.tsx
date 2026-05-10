@@ -428,13 +428,13 @@ function Landing() {
             <span className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-accent" aria-hidden />
             <span className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-accent" aria-hidden />
             <div className="relative max-w-md mx-auto lg:mx-0 lg:ml-auto lg:mr-12">
-              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Контакты</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold mt-3 mb-4 leading-tight">
+              <Reveal as="span" className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Контакты</Reveal>
+              <Reveal as="h2" delay={120} className="font-display text-4xl md:text-5xl font-bold mt-3 mb-4 leading-tight">
                 Обсудим <em className="font-display italic font-medium text-accent">ваш проект</em>
-              </h2>
-              <p className="text-white/75 mt-4 mb-10 font-light leading-relaxed">
+              </Reveal>
+              <Reveal as="p" delay={240} className="text-white/75 mt-4 mb-10 font-light leading-relaxed">
                 Оставьте заявку — перезвоним в&nbsp;течение 15&nbsp;минут и&nbsp;согласуем удобное время для бесплатного замера.
-              </p>
+              </Reveal>
               <div className="space-y-5 border-t border-white/15 pt-8">
                 {[
                   { icon: Phone, label: "+7 904 680 87 83", href: "tel:+79046808783" },
