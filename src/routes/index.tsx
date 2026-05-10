@@ -303,28 +303,28 @@ function Landing() {
               { name: "Капитальный", price: "12 000", featured: true, desc: "Полное обновление с заменой коммуникаций", features: ["Всё из косметического", "Замена электрики и сантехники", "Выравнивание стен и полов", "Сан­узел под ключ"] },
               { name: "Премиальный", price: "20 000", desc: "Дизайнерский ремонт по авторскому проекту", features: ["Всё из капитального", "Реализация дизайн-проекта", "Скрытый монтаж, теневые профили", "Премиум-материалы"] },
             ].map((t) => (
-              <div key={t.name} className={`rounded-2xl p-8 flex flex-col ${t.featured ? "bg-accent text-accent-foreground scale-[1.02]" : "bg-white/5"}`} style={t.featured ? undefined : { border: "1px solid rgba(255,255,255,0.15)" }}>
-                {t.featured && <span className="inline-block text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 bg-accent-foreground/10 rounded-full self-start">Популярный</span>}
-                <h3 className="text-2xl font-bold mb-2">{t.name}</h3>
-                <p className={`text-sm mb-6 ${t.featured ? "text-accent-foreground/80" : "text-white/70"}`}>{t.desc}</p>
-                <div className="mb-6">
-                  <span className="text-sm">от</span>
-                  <span className="text-5xl font-extrabold mx-2">{t.price}</span>
+              <div key={t.name} className={`p-8 flex flex-col border ${t.featured ? "bg-accent text-accent-foreground border-accent scale-[1.02]" : "bg-white/[0.03] border-white/15"}`}>
+                {t.featured && <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] mb-3 px-3 py-1 border border-accent-foreground/40 self-start">Популярный</span>}
+                <h3 className="font-display text-2xl font-bold mb-2">{t.name}</h3>
+                <p className={`text-sm mb-6 font-light ${t.featured ? "text-accent-foreground/85" : "text-white/65"}`}>{t.desc}</p>
+                <div className="mb-6 border-t border-b border-current/20 py-4 -mx-1">
+                  <span className="text-sm italic font-display">от</span>
+                  <span className="font-display text-5xl font-bold mx-2 tabular-nums">{t.price}</span>
                   <span className="text-sm">₽/м²</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {t.features.map(f => (
                     <li key={f} className="flex gap-3 text-sm">
-                      <CheckCircle2 className={`h-5 w-5 flex-shrink-0 ${t.featured ? "" : "text-accent"}`} />
+                      <CheckCircle2 className={`h-5 w-5 flex-shrink-0 ${t.featured ? "" : "text-accent"}`} strokeWidth={1.5} />
                       <span>{f}</span>
                     </li>
                   ))}
                 </ul>
                 <Button
                   variant="outline"
-                  className={`mt-auto w-full h-12 font-semibold ${t.featured
-                    ? "bg-transparent border-2 border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent"
-                    : "bg-transparent border-2 border-white/60 text-white hover:bg-white hover:text-primary"}`}
+                  className={`mt-auto w-full h-12 font-semibold rounded-none ${t.featured
+                    ? "bg-transparent border border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent"
+                    : "bg-transparent border border-white/60 text-white hover:bg-accent hover:text-accent-foreground hover:border-accent"}`}
                 >
                   {t.featured ? "Выбрать" : "Узнать подробнее"}
                 </Button>
