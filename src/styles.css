@@ -169,7 +169,6 @@
     transparent 14px
   );
 }
-}
 
 html { scroll-behavior: smooth; }
 @media (max-width: 767px) {
