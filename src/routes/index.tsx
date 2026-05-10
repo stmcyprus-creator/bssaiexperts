@@ -220,7 +220,7 @@ function Landing() {
           </div>
 
           {/* Calculator with corner accents */}
-          <div className="relative bg-card text-card-foreground p-8 md:p-10">
+          <div className="relative bg-card text-card-foreground p-8 md:p-10 bg-pattern-lines">
             {/* Corner accents */}
             <span className="absolute -top-px -left-px w-6 h-6 border-t-2 border-l-2 border-accent" aria-hidden />
             <span className="absolute -top-px -right-px w-6 h-6 border-t-2 border-r-2 border-accent" aria-hidden />
@@ -265,7 +265,7 @@ function Landing() {
       </section>
 
       {/* STATS STRIP */}
-      <section className="bg-primary text-primary-foreground py-8">
+      <section className="bg-primary text-primary-foreground py-8 bg-pattern-lines">
         <div className="container mx-auto px-6 grid grid-cols-3 divide-x divide-white/15">
           {[["340+", "объектов"], ["16 лет", "на рынке"], ["5 лет", "гарантии"]].map(([n, l]) => (
             <div key={l} className="text-center px-4">
@@ -285,7 +285,7 @@ function Landing() {
             { icon: ShieldCheck, title: "Технический надзор", text: "Прораб проверяет каждый этап. Отчёт с фото — раз в неделю в мессенджер." },
             { icon: Sparkles, title: "Чистота на объекте", text: "Вывозим мусор и делаем профессиональный клининг перед сдачей." },
           ].map(({icon:Icon, title, text}, i) => (
-            <Reveal key={title} delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card">
+            <Reveal key={title} delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card bg-pattern-lines">
               <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
               <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
               <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
@@ -295,7 +295,7 @@ function Landing() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="scroll-mt-20 py-24 bg-card/40 border-y border-border">
+      <section id="services" className="scroll-mt-20 py-24 bg-card/40 border-y border-border bg-pattern-lines">
         <div className="container mx-auto px-6">
           <SectionTitle eyebrow="Услуги" title="Что мы делаем" />
           <div className="grid md:grid-cols-2 gap-6 mt-14">
@@ -326,7 +326,7 @@ function Landing() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolio.filter(p => filter==="all" || p.cat===filter).map((p, i) => (
-            <Reveal as="article" key={`${filter}-${i}`} delay={(i % 3) * 80} className="group bg-card overflow-hidden border-t-2 border-accent">
+            <Reveal as="article" key={`${filter}-${i}`} delay={(i % 3) * 80} className="group bg-card overflow-hidden border-t-2 border-accent bg-pattern-lines">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={p.img} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
@@ -357,7 +357,7 @@ function Landing() {
       </section>
 
       {/* PRICES */}
-      <section id="prices" className="scroll-mt-20 py-24 bg-primary text-primary-foreground">
+      <section id="prices" className="scroll-mt-20 py-24 bg-primary text-primary-foreground bg-pattern-lines">
         <div className="container mx-auto px-6">
           <SectionTitle eyebrow="Цены" title="Прайс-лист" light />
           <div className="grid md:grid-cols-3 gap-6 mt-14">
@@ -408,7 +408,7 @@ function Landing() {
             { icon: Wrench, title: "Ремонт", text: "Все этапы по графику" },
             { icon: CheckCircle2, title: "Сдача", text: "Клининг и гарантия 5 лет" },
           ].map((s, i) => (
-            <Reveal key={s.title} delay={i * 80} className="relative bg-card p-6 border-t-2 border-accent">
+            <Reveal key={s.title} delay={i * 80} className="relative bg-card p-6 border-t-2 border-accent bg-pattern-lines">
               <div className="absolute -top-px right-4 font-display italic text-accent text-3xl font-bold leading-none -translate-y-1/2 bg-background px-2">
                 {String(i+1).padStart(2,"0")}
               </div>
@@ -457,7 +457,7 @@ function Landing() {
           </div>
 
           {/* RIGHT: light form */}
-          <div className="relative bg-secondary text-foreground p-10 md:p-16 flex items-center">
+          <div className="relative bg-secondary text-foreground p-10 md:p-16 flex items-center bg-pattern-lines">
             <span className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-accent" aria-hidden />
             <span className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-accent" aria-hidden />
             <form className="w-full max-w-md mx-auto lg:mx-0 lg:mr-auto lg:ml-12 space-y-5" onSubmit={(e)=>e.preventDefault()}>
@@ -490,7 +490,7 @@ function Landing() {
         </div>
       </section>
 
-      <footer className="bg-primary text-gray-300 py-10 md:py-12">
+      <footer className="bg-primary text-gray-300 py-10 md:py-12 bg-pattern-lines">
         <div className="container mx-auto px-4 sm:px-6 grid gap-8 md:gap-8 md:grid-cols-3 items-center text-center md:text-left">
           <img src={logoFooter} alt="BSS — Бизнес. Стратегии. Сервис" className="h-14 md:h-16 w-auto mx-auto md:mx-0" />
           <nav aria-label="Быстрые ссылки в футере" className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm justify-items-center md:flex md:flex-wrap md:justify-center md:gap-x-5">
@@ -588,7 +588,7 @@ function SectionTitle({ eyebrow, title, light, align = "center" }: { eyebrow: st
 
 function ServiceCard({ icon: Icon, title, items }: { icon: any; title: string; items: string[] }) {
   return (
-    <div className="bg-card p-8 border-t-2 border-accent">
+    <div className="bg-card p-8 border-t-2 border-accent bg-pattern-lines">
       <div className="flex items-center gap-4 mb-6">
         <div className="w-14 h-14 border border-accent text-accent flex items-center justify-center">
           <Icon className="h-7 w-7" strokeWidth={1.5} />
