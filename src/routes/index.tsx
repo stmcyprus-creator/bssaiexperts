@@ -497,12 +497,12 @@ function Landing() {
 
 function Header() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white" style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
+    <header className="fixed top-0 inset-x-0 z-50 bg-background/85 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <a href="#home" className="flex items-center">
-          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-16 w-auto" />
+          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-14 w-auto" />
         </a>
-        <nav className="hidden md:flex gap-8 text-[15px] font-extrabold tracking-wide uppercase">
+        <nav className="hidden md:flex gap-8 text-[12px] font-bold tracking-[0.2em] uppercase text-foreground/80">
           {[["#services","Услуги"],["#portfolio","Портфолио"],["#prices","Цены"],["#process","Этапы"],["#contact","Контакты"]].map(([h,l])=>(
             <a key={h} href={h} className="hover:text-accent transition-colors">{l}</a>
           ))}
@@ -515,26 +515,27 @@ function Header() {
 function SectionTitle({ eyebrow, title, light, align = "center" }: { eyebrow: string; title: string; light?: boolean; align?: "left"|"center" }) {
   return (
     <div className={align === "center" ? "text-center max-w-2xl mx-auto" : ""}>
-      <span className={`inline-block text-xs font-bold uppercase tracking-[0.2em] mb-3 ${light ? "text-accent" : "text-accent"}`}>{eyebrow}</span>
-      <h2 className={`text-4xl md:text-5xl font-extrabold ${light ? "text-primary-foreground" : "text-primary"}`}>{title}</h2>
+      <span className="inline-block text-[11px] font-bold uppercase tracking-[0.25em] mb-3 text-accent">{eyebrow}</span>
+      <h2 className={`font-display text-4xl md:text-5xl font-bold leading-tight ${light ? "text-primary-foreground" : "text-foreground"}`}>{title}</h2>
+      <span className="block w-12 h-px bg-accent mt-5 mx-auto" style={{ marginLeft: align === "left" ? 0 : undefined, marginRight: align === "left" ? "auto" : undefined }} aria-hidden />
     </div>
   );
 }
 
 function ServiceCard({ icon: Icon, title, items }: { icon: any; title: string; items: string[] }) {
   return (
-    <div className="bg-card rounded-2xl p-8 border border-border" style={{ boxShadow: "var(--shadow-card)" }}>
+    <div className="bg-card p-8 border-t-2 border-accent">
       <div className="flex items-center gap-4 mb-6">
-        <div className="w-14 h-14 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
-          <Icon className="h-7 w-7" />
+        <div className="w-14 h-14 border border-accent text-accent flex items-center justify-center">
+          <Icon className="h-7 w-7" strokeWidth={1.5} />
         </div>
-        <h3 className="text-2xl font-bold">{title}</h3>
+        <h3 className="font-display text-2xl font-bold">{title}</h3>
       </div>
       <ul className="space-y-3">
         {items.map(i => (
           <li key={i} className="flex gap-3">
-            <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-            <span className="text-muted-foreground">{i}</span>
+            <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+            <span className="text-muted-foreground font-light">{i}</span>
           </li>
         ))}
       </ul>
