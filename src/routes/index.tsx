@@ -287,7 +287,7 @@ function Landing() {
           ))}
         </div>
         <div className="flex justify-center mt-10">
-          <Button variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+          <Button variant="outline" size="lg" className="border border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded-none">
             Показать все работы
           </Button>
         </div>
