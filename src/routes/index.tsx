@@ -345,13 +345,13 @@ function Landing() {
             { icon: Wrench, title: "Ремонт", text: "Все этапы по графику" },
             { icon: CheckCircle2, title: "Сдача", text: "Клининг и гарантия 5 лет" },
           ].map((s, i) => (
-            <div key={s.title} className="relative bg-card rounded-2xl p-6 border border-border" style={{ boxShadow: "var(--shadow-card)" }}>
-              <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-extrabold text-sm">
-                {i+1}
+            <div key={s.title} className="relative bg-card p-6 border-t-2 border-accent">
+              <div className="absolute -top-px right-4 font-display italic text-accent text-3xl font-bold leading-none -translate-y-1/2 bg-background px-2">
+                {String(i+1).padStart(2,"0")}
               </div>
-              <s.icon className="h-9 w-9 text-primary mb-4" />
-              <h3 className="font-bold mb-1">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.text}</p>
+              <s.icon className="h-9 w-9 text-accent mb-4" strokeWidth={1.5} />
+              <h3 className="font-display font-bold mb-1 text-lg">{s.title}</h3>
+              <p className="text-sm text-muted-foreground font-light">{s.text}</p>
             </div>
           ))}
         </div>
