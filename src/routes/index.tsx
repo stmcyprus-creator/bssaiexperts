@@ -357,46 +357,63 @@ function Landing() {
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="scroll-mt-20 py-24 bg-secondary/40">
-        <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12">
-          <div>
-            <SectionTitle eyebrow="Контакты" title="Обсудим ваш проект" align="left" />
-            <p className="text-muted-foreground mt-4 mb-8 max-w-md">
-              Оставьте заявку — перезвоним в течение 15 минут и согласуем удобное время для бесплатного замера.
-            </p>
-            <div className="space-y-4">
-              {[
-                { icon: Phone, label: "+7 904 680 87 83" },
-                { icon: Mail, label: "bss-rus@mail.ru" },
-                { icon: MapPin, label: "г. Липецк, ул. Толстого, 46" },
-              ].map(({icon:Icon, label}) => (
-                <div key={label} className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center">
-                    <Icon className="h-5 w-5 text-accent" />
-                  </div>
-                  <span className="font-medium">{label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex gap-3 mt-8">
-              <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-colors"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
-              <Button size="lg" variant="outline" className="gap-2 border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground active:bg-accent/80 active:text-accent-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-colors"><Send className="h-5 w-5" /> Telegram</Button>
+      {/* CONTACT — split layout */}
+      <section id="contact" className="scroll-mt-20">
+        <div className="grid lg:grid-cols-2 min-h-[600px]">
+          {/* LEFT: dark + pattern */}
+          <div className="relative bg-primary text-primary-foreground p-10 md:p-16 bg-pattern-lines overflow-hidden">
+            <span className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-accent" aria-hidden />
+            <span className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-accent" aria-hidden />
+            <div className="relative max-w-md mx-auto lg:mx-0 lg:ml-auto lg:mr-12">
+              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Контакты</span>
+              <h2 className="font-display text-4xl md:text-5xl font-bold mt-3 mb-4 leading-tight">
+                Обсудим <em className="font-display italic font-medium text-accent">ваш проект</em>
+              </h2>
+              <p className="text-white/75 mt-4 mb-10 font-light leading-relaxed">
+                Оставьте заявку — перезвоним в&nbsp;течение 15&nbsp;минут и&nbsp;согласуем удобное время для бесплатного замера.
+              </p>
+              <div className="space-y-5 border-t border-white/15 pt-8">
+                {[
+                  { icon: Phone, label: "+7 904 680 87 83", href: "tel:+79046808783" },
+                  { icon: Mail, label: "bss-rus@mail.ru", href: "mailto:bss-rus@mail.ru" },
+                  { icon: MapPin, label: "г. Липецк, ул. Толстого, 46" },
+                ].map(({icon:Icon, label, href}) => (
+                  <a key={label} href={href ?? "#"} className="flex items-center gap-4 group">
+                    <div className="w-11 h-11 border border-accent/50 flex items-center justify-center group-hover:bg-accent group-hover:border-accent transition-colors">
+                      <Icon className="h-4 w-4 text-accent group-hover:text-accent-foreground transition-colors" strokeWidth={1.5} />
+                    </div>
+                    <span className="font-medium">{label}</span>
+                  </a>
+                ))}
+              </div>
+              <div className="flex gap-3 mt-10">
+                <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary transition-colors rounded-none"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
+                <Button size="lg" variant="outline" className="gap-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-accent-foreground active:bg-accent/80 active:text-accent-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary transition-colors rounded-none"><Send className="h-5 w-5" /> Telegram</Button>
+              </div>
             </div>
           </div>
-          <form className="bg-card rounded-2xl p-8 md:p-10 space-y-5" style={{ boxShadow: "var(--shadow-card)" }} onSubmit={(e)=>e.preventDefault()}>
-            <h3 className="text-2xl font-bold">Заявка на замер</h3>
-            <div className="space-y-2"><Label>Имя</Label><Input placeholder="Как к вам обращаться" /></div>
-            <div className="space-y-2"><Label>Телефон</Label><Input placeholder="+7 (___) ___-__-__" /></div>
-            <div className="space-y-2"><Label>Сообщение</Label><Textarea placeholder="Тип объекта, площадь, пожелания" rows={4} /></div>
-            <Button className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold">
-              Отправить заявку
-            </Button>
-            <p className="text-xs text-muted-foreground text-center">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
-          </form>
+
+          {/* RIGHT: light form */}
+          <div className="relative bg-secondary text-foreground p-10 md:p-16 flex items-center">
+            <span className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-accent" aria-hidden />
+            <span className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-accent" aria-hidden />
+            <form className="w-full max-w-md mx-auto lg:mx-0 lg:mr-auto lg:ml-12 space-y-5" onSubmit={(e)=>e.preventDefault()}>
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Заявка</span>
+                <h3 className="font-display text-3xl font-bold mt-2">На&nbsp;бесплатный <em className="italic font-medium text-accent">замер</em></h3>
+              </div>
+              <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Имя</Label><Input placeholder="Как к вам обращаться" className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent" /></div>
+              <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Телефон</Label><Input placeholder="+7 (___) ___-__-__" className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent" /></div>
+              <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Сообщение</Label><Textarea placeholder="Тип объекта, площадь, пожелания" rows={3} className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent resize-none" /></div>
+              <Button className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-none">
+                Отправить заявку
+              </Button>
+              <p className="text-xs text-muted-foreground text-center font-light">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+            </form>
+          </div>
         </div>
-        <div className="container mx-auto px-6 mt-12">
-          <div className="rounded-2xl overflow-hidden border border-border" style={{ boxShadow: "var(--shadow-card)" }}>
+        <div className="container mx-auto px-6 py-12">
+          <div className="overflow-hidden border-t-2 border-accent">
             <iframe
               title="Карта: г. Липецк, ул. Толстого, 46"
               src="https://yandex.ru/map-widget/v1/?ll=39.594000%2C52.610000&mode=search&text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA%2C%20%D1%83%D0%BB.%20%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%BE%D0%B3%D0%BE%2C%2046&z=16"
