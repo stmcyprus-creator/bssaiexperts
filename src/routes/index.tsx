@@ -408,14 +408,14 @@ function Landing() {
             { icon: Wrench, title: "Ремонт", text: "Все этапы по графику" },
             { icon: CheckCircle2, title: "Сдача", text: "Клининг и гарантия 5 лет" },
           ].map((s, i) => (
-            <div key={s.title} className="relative bg-card p-6 border-t-2 border-accent">
+            <Reveal key={s.title} delay={i * 80} className="relative bg-card p-6 border-t-2 border-accent">
               <div className="absolute -top-px right-4 font-display italic text-accent text-3xl font-bold leading-none -translate-y-1/2 bg-background px-2">
                 {String(i+1).padStart(2,"0")}
               </div>
               <s.icon className="h-9 w-9 text-accent mb-4" strokeWidth={1.5} />
               <h3 className="font-display font-bold mb-1 text-lg">{s.title}</h3>
               <p className="text-sm text-muted-foreground font-light">{s.text}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
