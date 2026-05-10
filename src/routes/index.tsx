@@ -227,9 +227,9 @@ function Landing() {
             <span className="absolute -bottom-px -left-px w-6 h-6 border-b-2 border-l-2 border-accent" aria-hidden />
             <span className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-accent" aria-hidden />
 
-            <div className="text-[11px] tracking-[0.25em] uppercase text-accent font-semibold mb-2">Калькулятор</div>
-            <h3 className="font-display text-3xl font-bold mb-1">Стоимость ремонта</h3>
-            <p className="text-sm text-muted-foreground mb-6 font-light italic">за тридцать секунд</p>
+            <Reveal as="div" className="text-[11px] tracking-[0.25em] uppercase text-accent font-semibold mb-2">Калькулятор</Reveal>
+            <Reveal as="h3" delay={100} className="font-display text-3xl font-bold mb-1">Стоимость ремонта</Reveal>
+            <Reveal as="p" delay={200} className="text-sm text-muted-foreground mb-6 font-light italic">за тридцать секунд</Reveal>
             <div className="space-y-5">
               <div>
                 <Label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Тип ремонта</Label>
