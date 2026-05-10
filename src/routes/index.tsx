@@ -197,26 +197,26 @@ function Landing() {
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative z-10 container mx-auto px-6 py-24 grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white">
-            <span className="inline-block px-4 py-1.5 border border-accent/60 text-accent text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
+            <Reveal as="span" className="inline-block px-4 py-1.5 border border-accent/60 text-accent text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
               Ремонт под ключ — с 2008
-            </span>
-            <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.02] mb-6 tracking-tight">
+            </Reveal>
+            <Reveal as="h1" delay={120} className="font-display text-5xl md:text-7xl font-bold leading-[1.02] mb-6 tracking-tight">
               Ремонт квартир и&nbsp;офисов{" "}
               <em className="not-italic block md:inline">
                 <span className="font-display italic font-medium text-accent">без сюрпризов</span>
               </em>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl font-body font-light leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delay={240} className="text-lg md:text-xl text-white/80 mb-8 max-w-xl font-body font-light leading-relaxed">
               Прозрачная смета, фиксированная цена и&nbsp;сдача в&nbsp;срок. Технадзор на&nbsp;каждом этапе.
-            </p>
-            <div className="flex flex-wrap gap-4">
+            </Reveal>
+            <Reveal delay={360} className="flex flex-wrap gap-4">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base rounded-none" style={{ boxShadow: "var(--shadow-accent)" }}>
                 Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border border-white/70 hover:bg-white hover:text-primary rounded-none">
                 Смотреть работы
               </Button>
-            </div>
+            </Reveal>
           </div>
 
           {/* Calculator with corner accents */}
