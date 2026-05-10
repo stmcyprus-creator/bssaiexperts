@@ -134,56 +134,66 @@ function Landing() {
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative z-10 container mx-auto px-6 py-24 grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent text-accent-foreground text-xs font-bold tracking-wider uppercase mb-6">
-              Ремонт под ключ с 2008 года
+            <span className="inline-block px-4 py-1.5 border border-accent/60 text-accent text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
+              Ремонт под ключ — с 2008
             </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.05] mb-6">
-              Ремонт квартир и офисов <span className="text-accent">без сюрпризов</span>
+            <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.02] mb-6 tracking-tight">
+              Ремонт квартир и&nbsp;офисов{" "}
+              <em className="not-italic block md:inline">
+                <span className="font-display italic font-medium text-accent">без сюрпризов</span>
+              </em>
             </h1>
-            <p className="text-lg md:text-xl text-white/85 mb-8 max-w-xl">
-              Прозрачная смета, фиксированная цена и сдача в срок. Технадзор на каждом этапе.
+            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl font-body font-light leading-relaxed">
+              Прозрачная смета, фиксированная цена и&nbsp;сдача в&nbsp;срок. Технадзор на&nbsp;каждом этапе.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base" style={{ boxShadow: "var(--shadow-accent)" }}>
+              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base rounded-none" style={{ boxShadow: "var(--shadow-accent)" }}>
                 Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border border-white/70 hover:bg-white hover:text-primary rounded-none">
                 Смотреть работы
               </Button>
             </div>
           </div>
 
-          {/* Calculator */}
-          <div className="bg-card rounded-2xl p-8 md:p-10" style={{ boxShadow: "var(--shadow-card)" }}>
-            <h3 className="text-2xl font-bold mb-1">Калькулятор стоимости</h3>
-            <p className="text-sm text-muted-foreground mb-6">Узнайте цену ремонта за 30 секунд</p>
+          {/* Calculator with corner accents */}
+          <div className="relative bg-card text-card-foreground p-8 md:p-10">
+            {/* Corner accents */}
+            <span className="absolute -top-px -left-px w-6 h-6 border-t-2 border-l-2 border-accent" aria-hidden />
+            <span className="absolute -top-px -right-px w-6 h-6 border-t-2 border-r-2 border-accent" aria-hidden />
+            <span className="absolute -bottom-px -left-px w-6 h-6 border-b-2 border-l-2 border-accent" aria-hidden />
+            <span className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-accent" aria-hidden />
+
+            <div className="text-[11px] tracking-[0.25em] uppercase text-accent font-semibold mb-2">Калькулятор</div>
+            <h3 className="font-display text-3xl font-bold mb-1">Стоимость ремонта</h3>
+            <p className="text-sm text-muted-foreground mb-6 font-light italic">за тридцать секунд</p>
             <div className="space-y-5">
               <div>
-                <Label className="mb-2 block font-semibold">Тип ремонта</Label>
+                <Label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Тип ремонта</Label>
                 <div className="grid grid-cols-3 gap-2">
                   {([["cosmetic","Косметика"],["capital","Капитал"],["premium","Премиум"]] as const).map(([k, l]) => (
                     <button key={k} onClick={() => setType(k)}
-                      className={`py-3 rounded-lg text-sm font-semibold transition-all ${type===k ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/70"}`}>
+                      className={`py-3 text-sm font-semibold transition-all border ${type===k ? "bg-accent text-accent-foreground border-accent" : "bg-transparent text-card-foreground border-border hover:border-accent"}`}>
                       {l}
                     </button>
                   ))}
                 </div>
               </div>
               <div>
-                <Label className="mb-2 block font-semibold">Площадь: <span className="text-accent">{area} м²</span></Label>
+                <Label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Площадь — <span className="text-accent font-bold">{area} м²</span></Label>
                 <input type="range" min={20} max={300} value={area} onChange={(e)=>setArea(+e.target.value)}
-                  className="w-full h-2 rounded-full bg-secondary accent-accent" />
+                  className="w-full h-1 rounded-full bg-secondary accent-accent" />
               </div>
-              <div className="bg-secondary rounded-xl p-5 flex items-end justify-between">
+              <div className="border-t border-b border-border py-5 flex items-end justify-between">
                 <div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">Ориентировочно</div>
-                  <div className="text-4xl font-extrabold text-primary mt-1">{total} ₽</div>
+                  <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Ориентировочно</div>
+                  <div className="font-display text-4xl md:text-5xl font-bold text-accent mt-1 tabular-nums">{total} ₽</div>
                 </div>
-                <div className="text-right text-sm text-muted-foreground">
+                <div className="text-right text-xs text-muted-foreground italic font-display">
                   {rates[type].toLocaleString("ru-RU")} ₽/м²
                 </div>
               </div>
-              <Button className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold">
+              <Button className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-none">
                 Получить точную смету
               </Button>
             </div>
