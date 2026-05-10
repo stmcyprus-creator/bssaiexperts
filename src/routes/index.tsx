@@ -85,10 +85,14 @@ function useActiveSection(ids: string[]) {
     const getElements = () =>
       ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
 
+    let rafId = 0;
+    let ticking = false;
+    let lastActive = "";
+
     const compute = () => {
+      ticking = false;
       const els = getElements();
       if (els.length === 0) return;
-      // Activation line sits just below the fixed header.
       const line = HEADER_OFFSET + 8;
       let current = "";
       for (const el of els) {
@@ -98,22 +102,81 @@ function useActiveSection(ids: string[]) {
           break;
         }
       }
-      // Near the bottom of the page — force the last section active.
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
         current = els[els.length - 1].id;
       }
-      setActive(current);
+      if (current !== lastActive) {
+        lastActive = current;
+        setActive(current);
+      }
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      rafId = window.requestAnimationFrame(compute);
     };
 
     compute();
-    window.addEventListener("scroll", compute, { passive: true });
-    window.addEventListener("resize", compute);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
-      window.removeEventListener("scroll", compute);
-      window.removeEventListener("resize", compute);
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, [ids.join(",")]);
   return active;
+}
+
+function useReveal<T extends HTMLElement = HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      el.classList.add("is-visible");
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-visible");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
+function Reveal({
+  as: As = "div",
+  delay = 0,
+  className = "",
+  children,
+  ...rest
+}: { as?: any; delay?: number; className?: string; children: React.ReactNode } & React.HTMLAttributes<HTMLElement>) {
+  const ref = useReveal<HTMLElement>();
+  return (
+    <As
+      ref={ref as any}
+      className={`reveal ${className}`}
+      style={{ transitionDelay: delay ? `${delay}ms` : undefined }}
+      {...rest}
+    >
+      {children}
+    </As>
+  );
 }
 
 function Landing() {
