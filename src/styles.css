@@ -150,10 +150,25 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-display);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.015em; font-weight: 700; }
+  .font-display { font-family: var(--font-display); }
+  .font-body { font-family: var(--font-body); }
+}
+
+/* Subtle diagonal pattern for dark contact panel */
+.bg-pattern-lines {
+  background-image: repeating-linear-gradient(
+    135deg,
+    oklch(1 0 0 / 0.04) 0,
+    oklch(1 0 0 / 0.04) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+}
 }
 
 html { scroll-behavior: smooth; }
