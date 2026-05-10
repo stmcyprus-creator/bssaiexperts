@@ -27,8 +27,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: stmmez.beget.tech
-          username: stmmez
+          username: stmmez_bss1
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /stmmez/bss.stmmez.beget.tech/public_html/
+          server-dir: /bss.stmmez.beget.tech/public_html/
           dangerous-clean-slate: true
