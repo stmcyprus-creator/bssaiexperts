@@ -232,7 +232,7 @@ function Landing() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="scroll-mt-20 py-24 bg-secondary/40">
+      <section id="services" className="scroll-mt-20 py-24 bg-card/40 border-y border-border">
         <div className="container mx-auto px-6">
           <SectionTitle eyebrow="Услуги" title="Что мы делаем" />
           <div className="grid md:grid-cols-2 gap-6 mt-14">
