@@ -326,7 +326,7 @@ function Landing() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolio.filter(p => filter==="all" || p.cat===filter).map((p, i) => (
-            <article key={i} className="group bg-card overflow-hidden border-t-2 border-accent">
+            <Reveal as="article" key={`${filter}-${i}`} delay={(i % 3) * 80} className="group bg-card overflow-hidden border-t-2 border-accent">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={p.img} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
@@ -346,7 +346,7 @@ function Landing() {
                     : <span className="font-bold text-foreground tabular-nums">{p.price}</span>}
                 </div>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
         <div className="flex justify-center mt-10">
