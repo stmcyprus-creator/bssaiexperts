@@ -541,7 +541,7 @@ function Landing() {
           <div className="overflow-hidden border-t-2 border-accent">
             <iframe
               title="Карта: г. Липецк, ул. Толстого, 46"
-              src="https://yandex.ru/map-widget/v1/?ll=39.594000%2C52.610000&mode=search&text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA%2C%20%D1%83%D0%BB.%20%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%BE%D0%B3%D0%BE%2C%2046&z=16"
+              src="https://yandex.ru/map-widget/v1/org/blitsspetsstroy/218883317607/?ll=39.586841%2C52.605725&z=17"
               width="100%"
               height="420"
               loading="lazy"
