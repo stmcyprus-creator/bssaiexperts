@@ -179,6 +179,63 @@ function Reveal({
   );
 }
 
+/**
+ * Subtle scroll-linked parallax: translates the element by ±amount px
+ * based on its position relative to the viewport center. rAF-throttled.
+ */
+function useParallax<T extends HTMLElement = HTMLElement>(amount = 22) {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let ticking = false;
+    let rafId = 0;
+
+    const update = () => {
+      ticking = false;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // progress: -1 (below viewport) → 0 (center) → 1 (above)
+      const center = rect.top + rect.height / 2;
+      const progress = (vh / 2 - center) / (vh / 2 + rect.height / 2);
+      const clamped = Math.max(-1, Math.min(1, progress));
+      el.style.transform = `translate3d(0, ${(-clamped * amount).toFixed(2)}px, 0)`;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      rafId = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [amount]);
+  return ref;
+}
+
+function ParallaxCard({
+  amount,
+  className = "",
+  children,
+}: { amount: number; className?: string; children: React.ReactNode }) {
+  const ref = useParallax<HTMLDivElement>(amount);
+  return (
+    <div ref={ref} className={className} style={{ willChange: "transform", transition: "transform 120ms linear" }}>
+      {children}
+    </div>
+  );
+}
+
 function Landing() {
   const [filter, setFilter] = useState<"all" | "apt" | "office">("all");
   const [area, setArea] = useState(50);
