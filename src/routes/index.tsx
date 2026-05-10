@@ -461,10 +461,10 @@ function Landing() {
             <span className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-accent" aria-hidden />
             <span className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-accent" aria-hidden />
             <form className="w-full max-w-md mx-auto lg:mx-0 lg:mr-auto lg:ml-12 space-y-5" onSubmit={(e)=>e.preventDefault()}>
-              <div>
+              <Reveal>
                 <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-accent">Заявка</span>
                 <h3 className="font-display text-3xl font-bold mt-2">На&nbsp;бесплатный <em className="italic font-medium text-accent">замер</em></h3>
-              </div>
+              </Reveal>
               <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Имя</Label><Input placeholder="Как к вам обращаться" className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent" /></div>
               <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Телефон</Label><Input placeholder="+7 (___) ___-__-__" className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent" /></div>
               <div className="space-y-2"><Label className="text-xs uppercase tracking-widest text-muted-foreground">Сообщение</Label><Textarea placeholder="Тип объекта, площадь, пожелания" rows={3} className="rounded-none border-0 border-b border-border bg-transparent px-0 focus-visible:ring-0 focus-visible:border-accent resize-none" /></div>
