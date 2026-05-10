@@ -576,8 +576,9 @@ function Header() {
 }
 
 function SectionTitle({ eyebrow, title, light, align = "center" }: { eyebrow: string; title: string; light?: boolean; align?: "left"|"center" }) {
+  const ref = useReveal<HTMLDivElement>();
   return (
-    <div className={align === "center" ? "text-center max-w-2xl mx-auto" : ""}>
+    <div ref={ref} className={`reveal ${align === "center" ? "text-center max-w-2xl mx-auto" : ""}`}>
       <span className="inline-block text-[11px] font-bold uppercase tracking-[0.25em] mb-3 text-accent">{eyebrow}</span>
       <h2 className={`font-display text-4xl md:text-5xl font-bold leading-tight ${light ? "text-primary-foreground" : "text-foreground"}`}>{title}</h2>
       <span className="block w-12 h-px bg-accent mt-5 mx-auto" style={{ marginLeft: align === "left" ? 0 : undefined, marginRight: align === "left" ? "auto" : undefined }} aria-hidden />
