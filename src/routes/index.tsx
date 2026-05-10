@@ -263,24 +263,24 @@ function Landing() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolio.filter(p => filter==="all" || p.cat===filter).map((p, i) => (
-            <article key={i} className="group bg-card rounded-2xl overflow-hidden border border-border" style={{ boxShadow: "var(--shadow-card)" }}>
+            <article key={i} className="group bg-card overflow-hidden border-t-2 border-accent">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={p.img} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold uppercase tracking-wider text-accent">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent">
                     {p.cat === "apt" ? "Квартира" : "Офис"}
                   </span>
-                  <span className="text-xs text-muted-foreground">{p.term}</span>
+                  <span className="text-xs text-muted-foreground italic font-display">{p.term}</span>
                 </div>
-                <h3 className="text-lg font-bold mb-2">{p.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{p.done}</p>
+                <h3 className="font-display text-xl font-bold mb-2">{p.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed font-light">{p.done}</p>
                 <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <span className="text-xs text-muted-foreground">Стоимость работ</span>
+                  <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Стоимость</span>
                   {p.price === "—"
-                    ? <span className="font-medium text-muted-foreground">по согласованию</span>
-                    : <span className="font-bold text-primary">{p.price}</span>}
+                    ? <span className="font-medium text-muted-foreground italic font-display">по согласованию</span>
+                    : <span className="font-bold text-foreground tabular-nums">{p.price}</span>}
                 </div>
               </div>
             </article>
