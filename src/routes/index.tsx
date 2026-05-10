@@ -216,18 +216,16 @@ function Landing() {
       {/* WHY US */}
       <section className="pt-20 pb-16 container mx-auto px-6">
         <SectionTitle eyebrow="Почему мы" title="Три причины доверить ремонт нам" />
-        <div className="grid md:grid-cols-3 gap-6 mt-14">
+        <div className="grid md:grid-cols-3 gap-px bg-border mt-14 border border-border">
           {[
             { icon: FileText, title: "Прозрачная смета", text: "Цена в договоре не меняется в процессе работы. Никаких «вылезших» расходов." },
             { icon: ShieldCheck, title: "Технический надзор", text: "Прораб проверяет каждый этап. Отчёт с фото — раз в неделю в мессенджер." },
             { icon: Sparkles, title: "Чистота на объекте", text: "Вывозим мусор и делаем профессиональный клининг перед сдачей." },
           ].map(({icon:Icon, title, text}) => (
-            <div key={title} className="bg-card rounded-2xl p-8 border border-border hover:-translate-y-1 transition-transform" style={{ boxShadow: "var(--shadow-card)" }}>
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: "#F5A623" }}>
-                <Icon className="h-7 w-7 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">{title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{text}</p>
+            <div key={title} className="bg-background p-8 group transition-colors hover:bg-card">
+              <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
+              <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
+              <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
             </div>
           ))}
         </div>
