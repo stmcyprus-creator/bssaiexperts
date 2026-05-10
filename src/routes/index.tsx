@@ -365,8 +365,8 @@ function Landing() {
               { name: "Косметический", price: "5 000", desc: "Покраска, обои, замена напольных покрытий", features: ["Демонтаж старой отделки", "Шпаклёвка и покраска стен", "Укладка ламината", "Замена плинтусов"] },
               { name: "Капитальный", price: "12 000", featured: true, desc: "Полное обновление с заменой коммуникаций", features: ["Всё из косметического", "Замена электрики и сантехники", "Выравнивание стен и полов", "Сан­узел под ключ"] },
               { name: "Премиальный", price: "20 000", desc: "Дизайнерский ремонт по авторскому проекту", features: ["Всё из капитального", "Реализация дизайн-проекта", "Скрытый монтаж, теневые профили", "Премиум-материалы"] },
-            ].map((t) => (
-              <div key={t.name} className={`p-8 flex flex-col border ${t.featured ? "bg-accent text-accent-foreground border-accent scale-[1.02]" : "bg-white/[0.03] border-white/15"}`}>
+            ].map((t, i) => (
+              <Reveal key={t.name} delay={i * 100} className={`p-8 flex flex-col border ${t.featured ? "bg-accent text-accent-foreground border-accent scale-[1.02]" : "bg-white/[0.03] border-white/15"}`}>
                 {t.featured && <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] mb-3 px-3 py-1 border border-accent-foreground/40 self-start">Популярный</span>}
                 <h3 className="font-display text-2xl font-bold mb-2">{t.name}</h3>
                 <p className={`text-sm mb-6 font-light ${t.featured ? "text-accent-foreground/85" : "text-white/65"}`}>{t.desc}</p>
@@ -391,7 +391,7 @@ function Landing() {
                 >
                   {t.featured ? "Выбрать" : "Узнать подробнее"}
                 </Button>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
