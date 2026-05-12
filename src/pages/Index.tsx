@@ -621,7 +621,7 @@ function Header() {
   }, []);
   return (
     <header
-      className={`sticky top-0 inset-x-0 z-50 backdrop-blur-md transition-all duration-500 ease-out ${
+      className={`fixed top-0 inset-x-0 z-50 backdrop-blur-md transition-all duration-500 ease-out ${
         scrolled
           ? "bg-background/90 border-b border-border shadow-[0_4px_20px_-12px_rgba(0,0,0,0.5)]"
           : "bg-background/40 border-b border-transparent"
