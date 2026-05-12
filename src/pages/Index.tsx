@@ -612,11 +612,24 @@ function Landing() {
 }
 
 function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-background/85 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+    <header
+      className={`fixed top-0 inset-x-0 z-50 backdrop-blur-md transition-all duration-500 ease-out ${
+        scrolled
+          ? "bg-background/90 border-b border-border shadow-[0_4px_20px_-12px_rgba(0,0,0,0.5)]"
+          : "bg-background/40 border-b border-transparent"
+      }`}
+    >
+      <div className={`container mx-auto px-6 flex items-center justify-between transition-all duration-500 ease-out ${scrolled ? "h-16" : "h-20"}`}>
         <a href="#home" className="flex items-center">
-          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className="h-14 w-auto" />
+          <img src={logo} alt="BSS — Бизнес. Стратегии. Сервис" className={`w-auto transition-all duration-500 ease-out ${scrolled ? "h-12" : "h-14"}`} />
         </a>
         <nav className="hidden md:flex gap-8 text-[12px] font-bold tracking-[0.2em] uppercase text-foreground/80">
           {[["#services","Услуги"],["#portfolio","Портфолио"],["#prices","Цены"],["#process","Этапы"],["#contact","Контакты"]].map(([h,l])=>(
