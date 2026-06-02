@@ -524,7 +524,12 @@ function Landing() {
               <Button className="w-full h-12 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-none">
                 Отправить заявку
               </Button>
-              <p className="text-xs text-muted-foreground text-center font-light">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+              <p className="text-xs text-muted-foreground text-center font-light">
+                Нажимая кнопку, вы соглашаетесь с{" "}
+                <a href="/privacy" className="text-accent underline underline-offset-2 hover:opacity-80">
+                  политикой обработки персональных данных
+                </a>
+              </p>
             </form>
           </div>
         </div>
