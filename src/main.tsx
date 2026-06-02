@@ -18,8 +18,10 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/cookies" element={<CookiePolicyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <CookieBanner />
       </BrowserRouter>
     </QueryClientProvider>
   </StrictMode>
