@@ -570,7 +570,13 @@ function Landing() {
               );
             })}
           </nav>
-          <p className="text-xs sm:text-sm leading-relaxed md:text-right">© {new Date().getFullYear()} BSS. Все права защищены.</p>
+          <div className="text-xs sm:text-sm leading-relaxed md:text-right space-y-2">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 justify-center md:justify-end">
+              <a href="/privacy" className="hover:text-white transition-colors">Политика конфиденциальности</a>
+              <a href="/cookies" className="hover:text-white transition-colors">Политика cookies</a>
+            </div>
+            <p>© {new Date().getFullYear()} BSS. Все права защищены.</p>
+          </div>
         </div>
       </footer>
 
