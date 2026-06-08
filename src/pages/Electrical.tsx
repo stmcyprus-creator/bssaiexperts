@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Zap, CheckCircle2, Plug, ShieldCheck, Phone } from "lucide-react";
 import logo from "@/assets/logo.svg";
+import heroImage from "@/assets/electrical-hero.jpg";
 
 const services = [
   {
@@ -69,9 +70,19 @@ export default function ElectricalPage() {
           замеров сопротивления изоляции.
         </p>
 
+        <div className="mt-12 overflow-hidden border-t-2 border-accent">
+          <img
+            src={heroImage}
+            alt="Монтаж электрощита и прокладка кабеля"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
         <div className="grid sm:grid-cols-3 gap-px bg-border mt-12 border border-border">
           {[
-            { icon: Zap, title: "Допуск СРО", text: "Право проводить работы до 1000 В включительно." },
+            { icon: Zap, title: "Опыт 10+ лет", text: "Команда инженеров с практикой на жилых и коммерческих объектах." },
             { icon: Plug, title: "Кабель в гофре ПВХ", text: "Только негорючий ВВГнг-LS, без скруток." },
             { icon: ShieldCheck, title: "Гарантия 5 лет", text: "На скрытый электромонтаж и щитовую сборку." },
           ].map(({ icon: Icon, title, text }) => (
