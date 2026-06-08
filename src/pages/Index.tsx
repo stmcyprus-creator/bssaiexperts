@@ -259,12 +259,12 @@ function Landing() {
             <Reveal as="p" delay={240} className="text-lg md:text-xl text-white/80 mb-8 max-w-xl font-body font-light leading-relaxed">
               Прозрачная смета, фиксированная цена и&nbsp;сдача в&nbsp;срок. Технадзор на&nbsp;каждом этапе.
             </Reveal>
-            <Reveal delay={360} className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base rounded-none" style={{ boxShadow: "var(--shadow-accent)" }}>
-                Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" />
+            <Reveal delay={360} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base rounded-none w-full sm:w-auto" style={{ boxShadow: "var(--shadow-accent)" }}>
+                <a href="#contact">Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" /></a>
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border border-white/70 hover:bg-white hover:text-primary rounded-none">
-                Смотреть работы
+              <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border border-accent/70 hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-none w-full sm:w-auto">
+                <a href="#contact">Заказать инженерный аудит</a>
               </Button>
             </Reveal>
           </div>
