@@ -14,8 +14,9 @@ import { Label } from "@/components/ui/label";
 import {
   Home, Building2, Wrench, ShieldCheck, Sparkles, ClipboardList,
   Ruler, FileText, Hammer, CheckCircle2, Phone, Mail, MapPin,
-  MessageCircle, Send, ArrowRight,
+  MessageCircle, Send, ArrowRight, Droplets, Zap,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function IndexPage() {
   return <Landing />;
@@ -362,6 +363,26 @@ function Landing() {
               "Кабинеты — звукоизоляция, перегородки",
               "Зоны ресепшн — лицо вашей компании",
             ]} />
+            <ServiceCard
+              icon={Droplets}
+              title="Водоснабжение и сантехника"
+              to="/services/plumbing"
+              items={[
+                "Монтаж ХВС, ГВС и канализации",
+                "Установка сантехники и водонагревателей",
+                "Тёплый пол водяной, опрессовка систем",
+              ]}
+            />
+            <ServiceCard
+              icon={Zap}
+              title="Электроснабжение и электромонтаж"
+              to="/services/electrical"
+              items={[
+                "Проект и сборка электрощита",
+                "Прокладка кабеля, розетки, освещение",
+                "Слаботочные сети, «умный дом»",
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -663,9 +684,9 @@ function SectionTitle({ eyebrow, title, light, align = "center" }: { eyebrow: st
   );
 }
 
-function ServiceCard({ icon: Icon, title, items }: { icon: any; title: string; items: string[] }) {
+function ServiceCard({ icon: Icon, title, items, to }: { icon: any; title: string; items: string[]; to?: string }) {
   return (
-    <div className="bg-card p-8 border-t-2 border-accent bg-pattern-lines">
+    <div className="bg-card p-8 border-t-2 border-accent bg-pattern-lines flex flex-col">
       <div className="flex items-center gap-4 mb-6">
         <div className="w-14 h-14 border border-accent text-accent flex items-center justify-center">
           <Icon className="h-7 w-7" strokeWidth={1.5} />
@@ -680,6 +701,14 @@ function ServiceCard({ icon: Icon, title, items }: { icon: any; title: string; i
           </li>
         ))}
       </ul>
+      {to && (
+        <Link
+          to={to}
+          className="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[0.2em] uppercase text-accent hover:gap-3 transition-all"
+        >
+          Подробнее <ArrowRight className="h-4 w-4" />
+        </Link>
+      )}
     </div>
   );
 }
