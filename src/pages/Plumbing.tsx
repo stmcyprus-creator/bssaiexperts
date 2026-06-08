@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Droplets, CheckCircle2, Wrench, ShieldCheck, Phone } from "lucide-react";
 import logo from "@/assets/logo.svg";
+import heroImage from "@/assets/plumbing-hero.jpg";
 
 const services = [
   {
@@ -68,6 +69,16 @@ export default function PlumbingPage() {
           в квартирах, частных домах и коммерческих помещениях. Работаем с давлением,
           температурой и материалами по нормам СП 30.13330 и СП 73.13330.
         </p>
+
+        <div className="mt-12 overflow-hidden border-t-2 border-accent">
+          <img
+            src={heroImage}
+            alt="Монтаж систем водоснабжения и сантехники"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover"
+          />
+        </div>
 
         <div className="grid sm:grid-cols-3 gap-px bg-border mt-12 border border-border">
           {[
