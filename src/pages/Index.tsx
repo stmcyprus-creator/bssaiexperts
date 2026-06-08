@@ -15,6 +15,7 @@ import {
   Home, Building2, Wrench, ShieldCheck, Sparkles, ClipboardList,
   Ruler, FileText, Hammer, CheckCircle2, Phone, Mail, MapPin,
   MessageCircle, Send, ArrowRight, Droplets, Zap,
+  Handshake, SearchCheck, Clock,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
