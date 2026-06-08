@@ -15,6 +15,7 @@ import {
   Home, Building2, Wrench, ShieldCheck, Sparkles, ClipboardList,
   Ruler, FileText, Hammer, CheckCircle2, Phone, Mail, MapPin,
   MessageCircle, Send, ArrowRight, Droplets, Zap,
+  Handshake, SearchCheck, Clock,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -258,12 +259,12 @@ function Landing() {
             <Reveal as="p" delay={240} className="text-lg md:text-xl text-white/80 mb-8 max-w-xl font-body font-light leading-relaxed">
               Прозрачная смета, фиксированная цена и&nbsp;сдача в&nbsp;срок. Технадзор на&nbsp;каждом этапе.
             </Reveal>
-            <Reveal delay={360} className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base rounded-none" style={{ boxShadow: "var(--shadow-accent)" }}>
-                Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" />
+            <Reveal delay={360} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-14 px-8 text-base rounded-none w-full sm:w-auto" style={{ boxShadow: "var(--shadow-accent)" }}>
+                <a href="#contact">Рассчитать стоимость <ArrowRight className="ml-2 h-5 w-5" /></a>
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border border-white/70 hover:bg-white hover:text-primary rounded-none">
-                Смотреть работы
+              <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base bg-transparent text-white border border-accent/70 hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-none w-full sm:w-auto">
+                <a href="#contact">Заказать инженерный аудит</a>
               </Button>
             </Reveal>
           </div>
@@ -310,6 +311,24 @@ function Landing() {
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ADVANTAGES */}
+      <section className="py-20 container mx-auto px-6">
+        <SectionTitle eyebrow="Преимущества" title="Почему с нами выгоднее" />
+        <div className="grid md:grid-cols-3 gap-px bg-border mt-14 border border-border">
+          {[
+            { icon: Handshake, title: "Один подрядчик — один результат", text: "Сами проектируем, монтируем инженерные сети и сдаём объект. Не нужно искать виноватых между дизайнером и строителями — за весь результат отвечает одно юрлицо." },
+            { icon: SearchCheck, title: "Бесплатный инженерный аудит до старта", text: "Наши инженеры выезжают на объект до покупки или аренды и оценивают состояние выделенных мощностей по электрике и вентиляции. Сразу скажем, выдержит ли здание ваши нагрузки." },
+            { icon: Clock, title: "Экономия времени до 30%", text: "Дизайнеры, инженеры и строители работают в связке: закупаем материалы и начинаем черновые работы параллельно с согласованием финальных этапов дизайн-проекта." },
+          ].map(({ icon: Icon, title, text }, i) => (
+            <Reveal key={title} delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card bg-pattern-lines h-full">
+              <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
+              <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
+              <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
