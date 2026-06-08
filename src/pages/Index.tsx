@@ -314,6 +314,24 @@ function Landing() {
         </div>
       </section>
 
+      {/* ADVANTAGES */}
+      <section className="py-20 container mx-auto px-6">
+        <SectionTitle eyebrow="Преимущества" title="Почему с нами выгоднее" />
+        <div className="grid md:grid-cols-3 gap-px bg-border mt-14 border border-border">
+          {[
+            { icon: Handshake, title: "Один подрядчик — один результат", text: "Сами проектируем, монтируем инженерные сети и сдаём объект. Не нужно искать виноватых между дизайнером и строителями — за весь результат отвечает одно юрлицо." },
+            { icon: SearchCheck, title: "Бесплатный инженерный аудит до старта", text: "Наши инженеры выезжают на объект до покупки или аренды и оценивают состояние выделенных мощностей по электрике и вентиляции. Сразу скажем, выдержит ли здание ваши нагрузки." },
+            { icon: Clock, title: "Экономия времени до 30%", text: "Дизайнеры, инженеры и строители работают в связке: закупаем материалы и начинаем черновые работы параллельно с согласованием финальных этапов дизайн-проекта." },
+          ].map(({ icon: Icon, title, text }, i) => (
+            <Reveal key={title} delay={i * 90} className="bg-background p-8 group transition-colors hover:bg-card bg-pattern-lines h-full">
+              <Icon className="h-8 w-8 text-accent mb-5" strokeWidth={1.5} />
+              <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
+              <p className="text-muted-foreground leading-relaxed font-light">{text}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* STATS STRIP */}
       <section className="bg-primary text-primary-foreground py-8 bg-pattern-lines">
         <div className="container mx-auto px-6 grid grid-cols-3 divide-x divide-white/15">
