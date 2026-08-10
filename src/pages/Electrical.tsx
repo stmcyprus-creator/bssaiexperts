@@ -117,10 +117,10 @@ export default function ElectricalPage() {
             <p className="text-gray-300 mt-2 font-light">Электрик-проектировщик приедет, замерит и подготовит спецификацию материалов.</p>
           </div>
           <a
-            href="tel:+79046808783"
+            href="tel:+79997881555"
             className="inline-flex items-center gap-3 bg-accent text-accent-foreground font-semibold px-6 py-4 hover:bg-accent/90 transition-colors"
           >
-            <Phone className="h-5 w-5" /> +7 904 680 87 83
+            <Phone className="h-5 w-5" /> +7 999 788 15 55
           </a>
         </div>
       </section>

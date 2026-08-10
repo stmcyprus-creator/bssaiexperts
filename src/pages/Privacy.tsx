@@ -94,7 +94,7 @@ export default function PrivacyPage() {
             <p>
               Пользователь вправе получать информацию об обработке своих данных, требовать их
               уточнения, блокирования или удаления, а также отозвать согласие, направив запрос
-              на e-mail: <a href="mailto:bss-rus@mail.ru" className="text-accent hover:underline">bss-rus@mail.ru</a>.
+              на e-mail: <a href="mailto:info@bss-rus.ru" className="text-accent hover:underline">info@bss-rus.ru</a>.
             </p>
           </section>
 
@@ -112,8 +112,8 @@ export default function PrivacyPage() {
             <p>
               BSS — Бизнес. Стратегии. Сервис<br />
               Адрес: г. Липецк, ул. Толстого, 46<br />
-              Телефон: <a href="tel:+79046808783" className="text-accent hover:underline">+7 904 680 87 83</a><br />
-              E-mail: <a href="mailto:bss-rus@mail.ru" className="text-accent hover:underline">bss-rus@mail.ru</a>
+              Телефон: <a href="tel:+79997881555" className="text-accent hover:underline">+7 999 788 15 55</a><br />
+              E-mail: <a href="mailto:info@bss-rus.ru" className="text-accent hover:underline">info@bss-rus.ru</a>
             </p>
           </section>
         </div>
