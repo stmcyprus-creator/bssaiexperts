@@ -85,7 +85,7 @@ export default function CookiePolicyPage() {
             <h2 className="font-display text-2xl font-semibold mb-3">6. Контакты</h2>
             <p>
               По вопросам обработки данных пишите на{" "}
-              <a href="mailto:bss-rus@mail.ru" className="text-accent hover:underline">bss-rus@mail.ru</a>.
+              <a href="mailto:info@bss-rus.ru" className="text-accent hover:underline">info@bss-rus.ru</a>.
             </p>
           </section>
         </div>

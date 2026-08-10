@@ -33,7 +33,7 @@ export default function NotFoundPage() {
               <Link to="/"><ArrowLeft className="h-5 w-5" /> На главную</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="gap-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-accent-foreground rounded-none">
-              <a href="tel:+79046808783">Позвонить нам</a>
+              <a href="tel:+79997881555">Позвонить нам</a>
             </Button>
           </div>
         </div>

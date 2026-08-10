@@ -530,8 +530,8 @@ function Landing() {
               </Reveal>
               <div className="space-y-5 border-t border-white/15 pt-8">
                 {[
-                  { icon: Phone, label: "+7 904 680 87 83", href: "tel:+79046808783" },
-                  { icon: Mail, label: "bss-rus@mail.ru", href: "mailto:bss-rus@mail.ru" },
+                  { icon: Phone, label: "+7 999 788 15 55", href: "tel:+79997881555" },
+                  { icon: Mail, label: "info@bss-rus.ru", href: "mailto:info@bss-rus.ru" },
                   { icon: MapPin, label: "г. Липецк, ул. Толстого, 46" },
                 ].map(({icon:Icon, label, href}) => (
                   <a key={label} href={href ?? "#"} className="flex items-center gap-4 group">
@@ -629,15 +629,15 @@ function Landing() {
       >
         <div className="grid grid-cols-3 h-16">
           <a
-            href="tel:+79046808783"
-            aria-label="Позвонить по телефону +7 904 680 87 83"
+            href="tel:+79997881555"
+            aria-label="Позвонить по телефону +7 999 788 15 55"
             className="flex flex-col items-center justify-center gap-1 text-primary-foreground hover:bg-white/10 active:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset transition-colors"
           >
             <Phone className="h-5 w-5" aria-hidden="true" />
             <span className="text-[11px] font-semibold">Звонок</span>
           </a>
           <a
-            href="https://wa.me/79046808783"
+            href="https://wa.me/79997881555"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Написать в WhatsApp"
@@ -647,7 +647,7 @@ function Landing() {
             <span className="text-[11px] font-semibold">WhatsApp</span>
           </a>
           <a
-            href="https://t.me/+79046808783"
+            href="https://t.me/+79997881555"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Написать в Telegram"
