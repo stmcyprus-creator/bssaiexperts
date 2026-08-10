@@ -543,8 +543,12 @@ function Landing() {
                 ))}
               </div>
               <div className="flex gap-3 mt-10">
-                <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary transition-colors rounded-none"><MessageCircle className="h-5 w-5" /> WhatsApp</Button>
-                <Button size="lg" variant="outline" className="gap-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-accent-foreground active:bg-accent/80 active:text-accent-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary transition-colors rounded-none"><Send className="h-5 w-5" /> Telegram</Button>
+                <Button asChild size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary transition-colors rounded-none">
+                  <a href="https://wa.me/79997881555" target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp +7 999 788 15 55"><MessageCircle className="h-5 w-5" aria-hidden="true" /> WhatsApp</a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="gap-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-accent-foreground active:bg-accent/80 active:text-accent-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary transition-colors rounded-none">
+                  <a href="https://t.me/+79997881555" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram +7 999 788 15 55"><Send className="h-5 w-5" aria-hidden="true" /> Telegram</a>
+                </Button>
               </div>
             </div>
           </div>
